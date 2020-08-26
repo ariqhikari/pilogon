@@ -1,0 +1,204 @@
+/* Jumbotron */
+
+nav div:first-child img {
+    position: relative;
+    z-index: 2;
+}
+
+.jumbotron {
+    position: relative;
+    z-index: 0;
+    background-image: url(img/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 0 0 10% 10%;
+    color: white;
+    margin-top: -120px;
+    height: 420px;
+}
+
+.jumbotron::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    border-radius: 0 0 10% 10%;
+    background-color: rgba(65, 197, 234, 0.2);
+}
+
+.jumbotron h1 {
+    text-shadow: 0 4px 6px rgba(0, 0, 0, 0.16);
+    font-weight: 600;
+    font-size: 2.5em;
+}
+
+.btn-blog {
+    border: solid 2px white;
+    background: transparent;
+    color: white;
+    border-radius: 20px;
+    width: 130px;
+    min-height: 40px;
+}
+
+.btn-blog:hover {
+    background: #59e0c0;
+    border-color: #59e0c0;
+    color: white;
+}
+
+.icon-scroll {
+    margin-top: 30px;
+    opacity: 0.75;
+    transition: 0.25s;
+}
+.icon-scroll:hover {
+    opacity: 1;
+}
+
+/* Post */
+
+.heading-post h2 {
+    color: #30435a;
+    font-weight: 600;
+}
+
+.heading-post a {
+    color: #9a9a9a;
+}
+
+.post .card {
+    transition: 0.25s;
+}
+
+.post .card:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.post .card a img {
+    transition: 0.25s;
+}
+
+.post .card:hover a img {
+    opacity: 0.8;
+}
+
+.post .card a h5 {
+    color: #474747;
+    font-weight: 500;
+    font-size: 1.5em;
+}
+
+.post .card a h5:hover,
+.post .card p a {
+    color: #686868;
+}
+
+.post .card p {
+    color: #818181;
+}
+
+.post .card p a {
+    color: #474747;
+    font-weight: 500;
+}
+
+.post .pagination li a {
+    color: #b2b2b2;
+}
+
+.post .pagination li a.active {
+    color: #30435a;
+    font-weight: 500;
+}
+
+/* Detail Post */
+.jumbotron .author p a {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.detail-post .share-comment p {
+    color: #474747;
+}
+
+.detail-post .share-comment a {
+    color: #b2b2b2;
+    transition: 0.25s;
+}
+
+.detail-post .share-comment a:hover {
+    color: #41c5ea;
+}
+
+.detail-post .breadcrumb-detail-post {
+    color: #6c6e6e;
+    font-weight: 500;
+}
+
+.detail-post .breadcrumb-detail-post a {
+    color: #6c6e6e;
+}
+
+.detail-post .detail-post-content {
+    color: #6c6e6e;
+}
+
+/* Komentar & Related Post */
+
+.related-post {
+    background-color: #f9f9f9;
+}
+
+.komentar .komentar-item {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.16) !important;
+}
+
+.komentar .author-name p a {
+    color: #333333;
+    font-size: 1.2em;
+}
+
+.komentar .author-name small {
+    color: #6c6e6e;
+    font-size: 0.95em;
+}
+
+.komentar a {
+    color: #6c6e6e;
+}
+
+.komentar .form-group input,
+.komentar .form-group textarea {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.komentar .form-group input::-webkit-input-placeholder,
+.komentar .form-group textarea::-webkit-input-placeholder {
+    color: #c5c5c5;
+}
+
+.komentar button {
+    background-color: #41c5ea;
+}
+
+.komentar button:hover {
+    background-color: #3aafcf;
+}
+
+/* Responsive */
+
+@media (min-width: 768px) {
+    .jumbotron {
+        border-radius: 0 0 40% 40%;
+    }
+
+    .jumbotron::after {
+        border-radius: 0 0 40% 40%;
+    }
+}
