@@ -1,6 +1,10 @@
 @extends('landing_page.master')
 
-@section("title","Buat Article")
+@push('addon-meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endpush
+
+@section("title","Buat Article - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
@@ -122,11 +126,5 @@
 @endsection
 
 @section('script')
-        <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-            <script>
-                CKEDITOR.replace( 'desc',{
-                    filebrowserUploadUrl: "{{route('class.image', ['_token' => csrf_token() ])}}",
-                    filebrowserUploadMethod: 'form'
-                });
-            </script>
-    @endsection
+    @include('includes.summernote')
+@endsection

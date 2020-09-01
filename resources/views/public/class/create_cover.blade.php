@@ -1,6 +1,10 @@
 @extends('landing_page.master')
 
-@section("title","Buat Kelas")
+@push('addon-meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endpush
+
+@section("title","Buat Kelas - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
@@ -116,7 +120,7 @@
                             <div class="col-md-8">
                                     <div class="form-group">
                                         <label for="title">Judul : </label>
-                                        <input id="title" class="form-control @error('title') is-invalid @enderror" type="text" name="title" style="background-color: transparent">
+                                        <input id="title" class="form-control @error('title') is-invalid @enderror" type="text" name="title" style="background-color: transparent" value="{{ old('title') }}">
                                         @error('title')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -165,19 +169,15 @@
     </div>
 @endsection
 
-    @section('script')
-        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-        <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-            <script>
-                $(document).ready(function() {
-                    $('.js-example-basic-multiple').select2({
-                        placeholder: "Pilih Kategori",
-                        allowClear: true
-                    });
-                });
-                CKEDITOR.replace( 'desc',{
-                    filebrowserUploadUrl: "{{route('class.image', ['_token' => csrf_token() ])}}",
-                    filebrowserUploadMethod: 'form'
-                });
-            </script>
-    @endsection
+@section('script')
+    @include('includes.summernote')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                placeholder: "Pilih Kategori",
+                allowClear: true
+            });
+        });
+    </script>
+@endsection

@@ -7,7 +7,7 @@ use App\Forum;
 use Illuminate\Http\Request;
 use Auth;
 
-class Comment_ForumController extends Controller
+class CommentForumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -95,7 +95,7 @@ class Comment_ForumController extends Controller
         //
     }
 
-    public function balas($id, Forum $forum){
+    public function balas(Forum $forum, $id){
         $parent = Comment_Forum::find($id);
         $likes_me = [];
         foreach (Auth::user()->like_forums as $key => $value) {

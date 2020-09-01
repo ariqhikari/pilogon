@@ -1,7 +1,7 @@
 @extends('landing_page.master')
 
 
-@section("title","kelas yang dipelajari")
+@section("title","Kelas yang dipelajari - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px">
@@ -53,7 +53,7 @@
         @foreach (Auth::user()->course_registered as $item)
             <div class="col-md-4 mt-4">
                 <a href="{{ route("class.show",$item) }}" style="text-decoration: none">
-                    <img src="{{ asset("upload_image/$item->thumbnail") }}" height="200px" width="100%" style="border-radius:5px" alt="">
+                    <img src="{{ Storage::url($item->thumbnail) }}" height="200px" width="100%" style="border-radius:5px" alt="">
                 </a>
                 <h5 style="margin-top: 14px;color:#262C39">{{ $item->title }}</h5>
                 <h5 style="color: #838383;text-transform:capitalize;margin-top:-8px">{{ $item->user->name }}</h5>

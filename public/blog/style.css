@@ -123,6 +123,10 @@ nav div:first-child img {
     font-weight: 500;
 }
 
+.share-comment {
+    z-index: 10;
+}
+
 .detail-post .share-comment p {
     color: #474747;
 }
@@ -156,7 +160,7 @@ nav div:first-child img {
 }
 
 .komentar .komentar-item {
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.16) !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.16);
 }
 
 .komentar .author-name p a {

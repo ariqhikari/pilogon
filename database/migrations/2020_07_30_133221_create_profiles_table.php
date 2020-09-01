@@ -15,7 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id");
+            $table->foreignId("user_id");
             $table->string("no_telepon")->nullable();
             $table->string("kota")->nullable();
             $table->text("biodata")->nullable();
@@ -24,6 +24,9 @@ class CreateProfilesTable extends Migration
             $table->date("tanggal_lahir")->nullable();
             $table->string("asal_sekolah")->nullable();
             $table->string("skill")->nullable();
+            $table->string("instagram")->nullable();
+            $table->string("github")->nullable();
+            $table->string("facebook")->nullable();
             $table->timestamps();
         });
     }

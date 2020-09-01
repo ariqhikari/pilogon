@@ -17,6 +17,11 @@
     <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <style>
+        img{
+            object-fit: cover
+        }
+    </style>
     </head>
 
     <body>

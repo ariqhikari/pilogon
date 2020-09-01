@@ -15,8 +15,9 @@ class CreateCourseUserTable extends Migration
     {
         Schema::create('cover_course_user', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id");
-            $table->integer("cover_course_id");
+            $table->foreignId("user_id");
+            $table->foreignId("cover_course_id");
+            $table->integer("index")->nullable();
             $table->timestamps();
         });
     }

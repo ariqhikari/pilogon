@@ -1,6 +1,6 @@
 @extends('landing_page.master')
 
-@section("title","Edit")
+@section("title","Edit User - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"

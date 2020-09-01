@@ -5,17 +5,14 @@
         <div class="container">
             <div class="row text-white">
                 <div class="col-md-4">
-                    <div class="row text-center">
-                        <div class="col">
+                    <div class="row text-center"> 
+                        <div class="col mb-2 mb-md-0">
                             <img src="{{ asset("resource/image/logo_putih.png") }}" alt="" width="130px">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-1">
                         <div class="col text-center">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <i class="fas fa-map-marker-alt" ></i>
-                                </div>
+                            <div class="row justify-content-center">
                                 <div class="col-md-11">
                                     <span style="text-align:left">Jl. Pasirluyu Utara, Pasirluyu, Kecamatan.Regol</span>
                                 </div>
@@ -23,21 +20,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 text-center">
+                <div class="col-md-4 col-lg-3 text-center my-3 my-md-0">
                     <div class="row">
                         <div class="col">
-                            <i class="fas fa-phone-volume" style="margin-top: 60px"> +62 123 4567 809</i>
+                            <i class="fas fa-phone-volume"></i> +62 123 4567 809
                         </div>
                     </div>
                     <div class="row">
                         <div class="col mt-1">
-                            <i class="fas fa-envelope"> example@gmail.com</i>
+                            <i class="fas fa-envelope"></i> example@gmail.com
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 text-center">
+                <div class="col-md-4 col-lg-2 text-center my-3 my-md-0">
                     <div class="row">
-                        <div class="col" style="margin-top: 50px">
+                        <div class="col">
                             <a href="{{ route("class.index") }}" style="color:#ffffff">
                                 Kelas
                             </a>
@@ -58,19 +55,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 mb-3">
+                <div class="col-md-12 col-lg-3 my-3 justify-content-center">
                     <div class="row text-center">
-                        <div class="col" style="margin-top: 55px">
+                        <div class="col">
                             <a href="">
                                 <i class="fab fa-facebook-square" style="font-size: 35px;color: #ffffff"></i>
                             </a>
                         </div>
-                        <div class="col" style="margin-top: 55px">
+                        <div class="col">
                             <a href="">
                                 <i class="fab fa-instagram" style="font-size: 35px;color: #ffffff"></i>
                             </a>
                         </div>
-                        <div class="col" style="margin-top: 55px">
+                        <div class="col">
                             <a href="">
                                 <i class="fab fa-github" style="font-size: 35px;color: #ffffff"></i>
                             </a>
@@ -118,7 +115,9 @@ function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     setTimeout(() => {
         $(".sidenav .sidenav-link").css("transition", "0.5s") ;
-    $(".sidenav .sidenav-link").css("opacity", 1) ;
+        $(".sidenav .sidenav-link").css("opacity", 1) ;
+        $("#box-mobile-profile").css("transition", "0.5s") ;
+        $("#box-mobile-profile").css("opacity", 1) ;
     }, 230);
 }
 
@@ -126,6 +125,8 @@ function openNav() {
 function closeNav() {
     $(".sidenav .sidenav-link").css("transition", "0.1s") ;
     $(".sidenav .sidenav-link").css("opacity", 0) ;
+    $("#box-mobile-profile").css("transition", "0.1s") ;
+    $("#box-mobile-profile").css("opacity", 0) ;
     document.getElementById("mySidenav").style.width = "0";
 }
 </script>

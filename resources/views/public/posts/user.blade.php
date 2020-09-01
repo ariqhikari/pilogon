@@ -1,6 +1,6 @@
 @extends('landing_page.master')
 
-@section("title","Artikel Ku")
+@section("title","Artikel Ku - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
@@ -95,12 +95,12 @@
                                     <img src="{{ Storage::url($item->thumbnail) }}" alt="" width="80px" style="border-radius:5px;float:left;margin-right:20px" height="80px">
                                     <h5 style="margin-top: 12px">{{ $item->title }}</h5>
                                     @if ($item->status != 1)
-                                        <h6 style="color: #6d6d6d">Draft • {{ $item->created_at->format("d M") }}</h6>
+                                        <h6 style="color: #6d6d6d">Draft • {{ $item->updated_at->format("d M") }}</h6>
                                     @else
-                                        <h6 style="color: #6d6d6d">Dipublikasikan • {{ $item->created_at->format("d M") }}</h6>
+                                        <h6 style="color: #6d6d6d">Dipublikasikan • {{ $item->updated_at->format("d M") }}</h6>
                                     @endif
                                     <!-- Default dropright button -->
-                                    <div class="btn-group dropright float-right" style="margin-top: -65px">
+                                    <div class="btn-group dropright float-right" style="margin-top: -60px">
                                         <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border:none;background:transparent">
                                             <i class="fas fa-ellipsis-v" style="font-size: 20px;color:rgb(88, 88, 88)"></i>
                                         </button>
@@ -125,8 +125,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <i class="fas fa-comment-alt float-right" style="margin-top: -20px;color:rgb(88, 88, 88)"> {{ $item->comments->count() }}</i>
-                                    <i class="fas fa-eye float-right" style="margin-right:50px;margin-top: -20px;color:rgb(88, 88, 88)"> {{ $item->views->count() }}</i>
+                                    <i class="fas fa-comment-alt float-right d-none d-md-block" style="margin-top: -20px;color:rgb(88, 88, 88)"> {{ $item->comments->count() }}</i>
+                                    <i class="fas fa-eye float-right d-none d-md-block" style="margin-right:50px;margin-top: -20px;color:rgb(88, 88, 88)"> {{ $item->views->count() }}</i>
                                 </div>
                             </div>
                         </div>

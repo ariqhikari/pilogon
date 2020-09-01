@@ -25,14 +25,14 @@ class ClassController extends Controller
 
     public function store_cover(Request $request){
         $request->validate([
-            "title" => "required",
+            "title" => "required|unique:courses,title",
             "category_id" => "required",
-            "thumbnail" => "required|mimes:png,jpg,jpeg,svg",
+            "thumbnail" => "required|mimes:png,jpg,jpeg",
             "description" => "required",
             "level" => "required"
         ]);
 
-        $slug = Str::slug($request->title."-".\Str::random(5));
+        $slug = Str::slug($request->title);
 
         $file = $request->file('thumbnail')->store('assets/course', 'public');
 
@@ -56,16 +56,21 @@ class ClassController extends Controller
     }
 
     public function image(Request $request){
-        if ($request->hasFile('upload')) {
-            $ckeditor = $request->input('CKEditorFuncNum');
-            $url = Storage::url($request->file('upload')->store('assets/ckeditor', 'public'));
-            $msg = 'Image uploaded successfully'; 
+        $request->validate([
+            "file" => "required|mimes:jpg,jpeg,svg",
+        ]);
 
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($ckeditor, '$url', '$msg')</script>";
-    
-            @header('Content-type: text/html; charset=utf-8'); 
-            return $response;
-        }  
+        $image = $request->file('file')->store('assets/summernote', 'public');
+
+        return Storage::url($image);
+    }
+
+    public function deleteImage(Request $request){
+        $src = $request->src;
+        $src = Str::after($src, asset('storage/'));
+        Storage::disk('public')->delete($src);
+
+        return 'Delete file successfull!';
     }
 
     public function show(CoverCourse $slug){

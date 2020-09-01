@@ -14,26 +14,17 @@ use App\Post;
 class AdminController extends Controller
 {
     public function dashboard(){
-        if (Auth::user()->permission != "admin") {
-            return redirect()->back()->with("error","You Doesn't Have Permission");
-        }
         $courses = CoverCourse::get()->count();
         $verifikasi = Verifikasi::where("status",0)->latest()->paginate(10);
         return view("admin.dashboard",compact("courses","verifikasi"));
     }
 
     public function userIndex(){
-        if (Auth::user()->permission != "admin") {
-            return redirect()->back()->with("error","You Doesn't Have Permission");
-        }
         $users = User::orderBy("name","ASC")->latest()->paginate(10);
         return view("admin.users.index",compact("users"));
     }
 
     public function userSearch(Request $request){
-        if (Auth::user()->permission != "admin") {
-            return redirect()->back()->with("error","You Doesn't Have Permission");
-        }
         $users = User::where("name",$request->keyword)->orWhere("name","like","%".$request->keyword."%")->latest()->paginate(10);
         return view("admin.users.index",compact("users"));
     }
@@ -64,9 +55,6 @@ class AdminController extends Controller
         }
 
     public function courseIndex(){
-        if (Auth::user()->permission != "admin") {
-            return redirect()->back()->with("error","You Doesn't Have Permission");
-        }
         $courses = CoverCourse::where("status",2)->latest()->paginate(10);
         return view("admin.courses.index",compact("courses"));
     }
@@ -90,17 +78,11 @@ class AdminController extends Controller
     }
 
     public function forumIndex(){
-        if (Auth::user()->permission != "admin") {
-            return redirect()->back()->with("error","You Doesn't Have Permission");
-        }
         $forums = Forum::orderBy("title","ASC")->latest()->paginate(10);
         return view("admin.forums.index",compact("forums"));
     }
 
     public function blogIndex(){
-        if (Auth::user()->permission != "admin") {
-            return redirect()->back()->with("error","You Doesn't Have Permission");
-        }
         $blogs = Post::orderBy("title","ASC")->latest()->paginate(10);
         return view("admin.blogs.index",compact("blogs"));
     }

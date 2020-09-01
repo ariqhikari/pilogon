@@ -17,10 +17,11 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string("title");
             $table->text("content");
-            $table->integer("category_id");
+            $table->foreignId("category_id");
             $table->string("slug");
             $table->string("thumbnail",500);
             $table->string("user_id");
+            $table->integer("status")->default(0);
             $table->timestamps();
         });
     }

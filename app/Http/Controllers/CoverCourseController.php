@@ -88,7 +88,6 @@ class CoverCourseController extends Controller
      */
     public function update(Request $request, $cover_course)
     {
-        $courses = CoverCourse::where("slug",$cover_course)->first();
         $request->validate([
             "title" => "required",
             "category_id" => "required",
@@ -96,8 +95,9 @@ class CoverCourseController extends Controller
             "thumbnail" => "mimes:png,jpg,jpeg,svg",
             "level" => "required"
         ]);
+        $courses = CoverCourse::where("slug",$cover_course)->first();
 
-        $slug = Str::slug($request->title."-".\Str::random(5));
+        $slug = Str::slug($request->title);
 
         if ($request->thumbnail != null) {
             Storage::disk('public')->delete($courses->thumbnail);

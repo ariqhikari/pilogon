@@ -45,11 +45,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" => "required",
+            "name" => "required|unique:App\Category,name",
             "gambar" => "required|mimes:png,jpg,jpeg,svg"
         ]);
 
-        $slug = \Str::slug($request->name."-".\Str::random(5));
+        $slug = \Str::slug($request->name);
 
         $file = $request->file('gambar')->store('assets/category', 'public');
 
@@ -97,10 +97,10 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            "name" => "required"
+            "name" => "required|unique:App\Category,name",
         ]);
 
-        $slug = \Str::slug($request->name."-".\Str::random(5));
+        $slug = \Str::slug($request->name);
 
         if ($request->gambar == null) {
             $category->update([
@@ -137,9 +137,6 @@ class CategoryController extends Controller
     }
 
     public function search(Request $request){
-        if (Auth::user()->permission != "admin") {
-            return redirect()->back()->with("error","You Doesn't Have Permission");
-        }
         $categorys = Category::where("name",$request->keyword)->orWhere("name","like","%".$request->keyword."%")->latest()->paginate(10);
         return view("admin.categorys.index",compact("categorys"));
     }

@@ -7,7 +7,7 @@ use App\Post_Comment;
 use App\Post;
 use Auth;
 
-class Post_CommentController extends Controller
+class PostCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -95,7 +95,7 @@ class Post_CommentController extends Controller
         //
     }
 
-    public function balas($id,Post $blog){
+    public function balas(Post $blog, $id){
         $parent = Post_Comment::find($id);
         $recent = Post::latest()->get()->take(3);
         $link = \URL::current();
@@ -110,7 +110,6 @@ class Post_CommentController extends Controller
             "parent" => $request->parent_id,
             "comment" => $request->comment
         ]);
-        $link = \URL::current();
 
         return redirect()->route("blogs.show",$blog)->with("sukses","Berhasil Membalas Komentar","link");
     }

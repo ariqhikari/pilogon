@@ -1,6 +1,6 @@
 @extends('landing_page.master')
 
-@section("title","Forum")
+@section("title","Forum - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
@@ -73,7 +73,7 @@
             <div class="col-md-12 mt-4">
                 <div class="row">
                     <div class="col">
-                        <div class="card box-profile">
+                        <div class="card box-profile" data-aos="fade-up" data-aos-delay="300">
                             <div class="card-body">
                                 <form action="{{ route("forum.search") }}" method="post">
                                     @csrf
@@ -93,47 +93,45 @@
                 </div>
             </div>
             <div class="col-md-12" id="kelas">
-                <div class="container">
-                    <div class="row">
-                        @if ($forums->count() <= 0)
-                            <div class="col-md-12 text-center" data-aos="fade-up" data-aos-delay="400">
-                                <img src="{{ asset("resource/image/null.png") }}" width="250px" alt="">
-                            </div>
-                        @else
-                            @foreach ($forums as $item)
-                                <div class="col-md-6 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="{{ $loop->iteration + 4 }}00">
-                                    <a href="{{ route("forum.show",$item->slug) }}" style="text-decoration: none">
-                                        <div class="card box-profile">
-                                            <div class="card-body">
-                                                <h4 class="card-title mt-2" style="text-transform: capitalize;color:rgb(56, 56, 56)">{{ substr($item->title,0,20) }}</h4>
-                                                <div>
-                                                    <img src="{{ Storage::url($item->user->foto) }}" alt="" width="40px" class="rounded-circle float-left" height="40px" style="margin-right:10px">
-                                                    <h6 style="color: rgb(129, 129, 129)">{{ $item->user->email }}</h6>
-                                                    <h6 style="color: rgb(129, 129, 129);margin-top:-5px">{{ $item->created_at->diffForHumans() }}</h6>
+                <div class="row">
+                    @if ($forums->count() <= 0)
+                        <div class="col-md-12 text-center" data-aos="fade-up" data-aos-delay="400">
+                            <img src="{{ asset("resource/image/null.png") }}" width="250px" alt="">
+                        </div>
+                    @else
+                        @foreach ($forums as $item)
+                            <div class="col-md-6 col-lg-4 mt-4" data-aos="fade-up" data-aos-delay="{{ $loop->iteration + 4 }}00">
+                                <a href="{{ route("forum.show",$item->slug) }}" style="text-decoration: none">
+                                    <div class="card box-profile">
+                                        <div class="card-body">
+                                            <h4 class="card-title mt-2" style="text-transform: capitalize;color:rgb(56, 56, 56)">{{ substr($item->title,0,20) }}..</h4>
+                                            <div>
+                                                <img src="{{ Storage::url($item->user->foto) }}" alt="" width="40px" class="rounded-circle float-left" height="40px" style="margin-right:10px">
+                                                <h6 style="color: rgb(129, 129, 129)">{{ $item->user->name }}</h6>
+                                                <h6 style="color: rgb(129, 129, 129);margin-top:-5px">{{ $item->created_at->diffForHumans() }}</h6>
+                                            </div>
+                                            <div>
+                                                <div style="float: left">
+                                                    @foreach ($item->categorys as $item2)
+                                                        <span class="badge badge-dark mt-3">{{ $item2->name }}</span>
+                                                    @endforeach
                                                 </div>
-                                                <div>
-                                                    <div style="float: left">
-                                                        @foreach ($item->categorys as $item2)
-                                                            <span class="badge badge-dark mt-3">{{ $item2->name }}</span>
-                                                        @endforeach
-                                                    </div>
-                                                    <div style="float: right">
-                                                        @if (in_array($item->id,$likes_me))
-                                                            <i class="fas fa-heart" style="color:#262C39"> {{ $item->likes->count() }}</i>
-                                                        @else
-                                                            <i class="far fa-heart" style="color:#262C39"> {{ $item->likes->count() }}</i>
-                                                        @endif
-                                                            <i class="far fa-comment mt-3 ml-2" style="color: #262C39"> {{ $item->comments->count() }}</i>
-                                                    </div>
+                                                <div style="float: right">
+                                                    @if (in_array($item->id,$likes_me))
+                                                        <i class="fas fa-heart" style="color:#262C39"> {{ $item->likes->count() }}</i>
+                                                    @else
+                                                        <i class="far fa-heart" style="color:#262C39"> {{ $item->likes->count() }}</i>
+                                                    @endif
+                                                        <i class="far fa-comment mt-3 ml-2" style="color: #262C39"> {{ $item->comments->count() }}</i>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
-                                </div>
-                            @endforeach
-                        @endif
-                    </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
-    @endsection
+@endsection

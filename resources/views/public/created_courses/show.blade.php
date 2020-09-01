@@ -1,6 +1,6 @@
 @extends('landing_page.master')
 
-@section("title","View Cover Kelas")
+@section("title","View Cover Kelas - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px">
@@ -151,7 +151,7 @@
                             <form action="{{ route("modules.store") }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <input id="title" class="form-control @error("title") is-invalid @enderror" type="text" name="title" placeholder="judul" style="background-color: transparent">
+                                    <input id="title" class="form-control @error("title") is-invalid @enderror" type="text" name="title" placeholder="Judul" style="background-color: transparent">
                                     @error('title')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

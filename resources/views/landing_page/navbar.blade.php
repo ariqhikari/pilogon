@@ -8,13 +8,13 @@
             <div style="float: right;z-index:99">
                 <div id="mySidenav" class="sidenav">
                     <a href="javascript:void(0)" class="closebtn sidenav-link" onclick="closeNav()">&times;</a>
-                    <a href="{{ url("/") }}" class="sidenav-link"><i class="fas fa-home"></i> Home</a>
-                    <a href="{{ route("blogs.index") }}" class="sidenav-link"><i class="fab fa-blogger-b"></i> Blog</a>
-                    <a href="{{ route("class.index") }}" class="sidenav-link"><i class="fas fa-swatchbook"></i> Kelas</a>
-                    <a href="{{ route("forum.index") }}" class="sidenav-link"><i class="fas fa-users"></i> Forum</a>
+                    <a href="{{ url("/") }}" class="sidenav-link {{ (request()->is('/')) ? 'active' : '' }}"><i class="fas fa-home"></i> Home</a>
+                    <a href="{{ route("blogs.index") }}" class="sidenav-link {{ (request()->is('blogs*')) ? 'active' : '' }}"><i class="fab fa-blogger-b"></i> Blog</a>
+                    <a href="{{ route("class.index") }}" class="sidenav-link {{ (request()->is('class*')) ? 'active' : '' }}"><i class="fas fa-swatchbook"></i> Kelas</a>
+                    <a href="{{ route("forum.index") }}" class="sidenav-link {{ (request()->is('forum*')) ? 'active' : '' }}"><i class="fas fa-users"></i> Forum</a>
                     @if(Auth::user() == true)
                         @if (Auth::user()->permission == "admin")
-                            <a href="{{ route("dashboard") }}" class="sidenav-link"><i class="fas fa-lock"></i>  Dashboard</a>
+                            <a href="{{ route("admin.dashboard") }}" class="sidenav-link"><i class="fas fa-lock"></i>  Dashboard</a>
                         @endif
                     @endif
                     @if (Auth::user() == false)
@@ -27,14 +27,14 @@
                     @else
                         <div class="d-flex align-items-center mt-3 d-md-none sidenav-link" id="img-mobile-profile" style="cursor: pointer;">
                             <div class="mr-2">
-                                <img  src="{{ Storage::url(Auth::user()->foto) }}" width="35px" height="35px" class="rounded-circle" alt="" style="margin-left: 30px;">
+                                <img  src="{{ Storage::url(Auth::user()->foto) }}" width="35px" height="35px" class="rounded-circle" alt="" style="margin-left: -7px;">
                             </div>
                             <span style="font-size:18px" class="user-sidebar">
-                                Hi, <span>{{ Auth::user()->name }}</span>
+                                <span>{{ Auth::user()->name }}</span>
                                 <i class="fas fa-chevron-down" style="margin-left: 5px;font-size: 12px;"></i>
                             </span>
                         </div>
-                        <div class="shadow d-md-none mx-auto mt-3 sidenav-link" id="box-mobile-profile" style="display: none;border-radius:10px;width:200px;min-height:220px">
+                        <div class="shadow d-md-none mx-auto mt-3" id="box-mobile-profile" style="display: none;border-radius:10px;width:200px;min-height:220px">
                             <br>
                             <a href="{{ route("user.show",Auth::user()->slug) }}" class="sidenav-link" style="font-size:16px;margin-left:-9px" class="px-auto">
                                 <i class="fas fa-user" style="color: #59E0C0"></i> Profile Saya

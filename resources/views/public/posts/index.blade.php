@@ -1,6 +1,6 @@
 @extends('landing_page.master')
 
-@section("title","Blogs")
+@section("title","Blogs - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo_putih.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
@@ -61,7 +61,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <div class="container text-center pb-3" style="clear:both;padding-top:80px">
+        <div class="container text-center pb-3" style="clear:both;padding-top:80px" data-aos="fade-up">
             <h1 class="display-4" id="title-blog-head">Blogs Pilogon</h1>
             <p class="lead" id="sub-title-blog-head">Blog-blog terkait tutorial atau tips & trick pemrograman.</p>
             <a href="{{ route("blogs.create") }}" class="btn btn-blog mt-2">
@@ -89,8 +89,8 @@
                 </div>
                 <hr>
                 <div class="row mt-4">
-                    @foreach ($posts as $item)
-                    <div class="col-md-6 col-lg-4 my-3">
+                    @forelse ($posts as $item)
+                    <div class="col-md-6 col-lg-4 my-3" data-aos="fade-up" data-aos-delay="{{ 3 + $loop->iteration }}00">
                         <div class="card box-profile">
                             <a href="{{ route("blogs.show",$item) }}" class="text-decoration-none">
                                 <center>
@@ -111,7 +111,7 @@
                                         <img src="{{ Storage::url($item->user->foto) }}" alt="author" width="50px" height="50px" class="rounded-circle">
                                     </div>
                                     <div class="author-name ml-3">
-                                        <p class="m-0"><a href="detail-post.html">{{ $item->user->name }}</a> in <a
+                                        <p class="m-0"><a href="{{ route("user.show", $item->user->slug ) }}">{{ $item->user->name }}</a> in <a
                                                 href="{{ route("blogs.categoryView",$item->category) }}">{{ $item->category->name }}</a></p>
                                         <p class="m-0">{{ $item->created_at->diffForHumans() }} • {{ $item->views->count() }} read</p>
                                     </div>
@@ -119,7 +119,11 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                        <div class="col-md-12 text-center" data-aos="fade-up" data-aos-delay="300">
+                            <img src="{{ asset("resource/image/null.png") }}" width="250px" alt="">
+                        </div>
+                    @endforelse
                 </div>
             </div>
             <div class="post-item my-5">
@@ -133,7 +137,7 @@
                     <div class="col-md-12">
                         <div class="row">
                             @foreach ($categorys as $item)
-                            <div class="col-md-6 col-lg-4 my-3">
+                            <div class="col-md-6 col-lg-4 my-3" data-aos="fade-up" data-aos-delay="{{$loop->iteration}}00">
                                 <div class="card box-profile" style="height:220px;background-repeat:no-repeat;background-size:cover;background-position:center;background-image: url('{{ Storage::url($item->gambar) }}')">
                                     <a href="{{ route("blogs.categoryView",$item) }}" class="text-decoration-none">
                                         <div style="width: 90%;height:188px;background-color:#181E2B;border-radius:10px;margin:auto;margin-top:16px;opacity:.8">

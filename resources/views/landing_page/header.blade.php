@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <meta name="description" content="Tempat belajar dan mengajar coding untuk semua orang">
+        @stack('addon-meta')
 
         <link rel="shortcut icon" href="{{ asset("resource/image/logo 1.png") }}" type="image/x-icon">
         <!-- Bootstrap CSS -->

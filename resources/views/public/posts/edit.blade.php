@@ -1,6 +1,10 @@
 @extends('landing_page.master')
 
-@section("title","Edit Article")
+@push('addon-meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endpush
+
+@section("title","Edit Article - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
@@ -96,7 +100,7 @@
                 <div class="col-md-4">
                     <div class="card box-profile">
                         <div class="card-body">
-                            <img src="{{ asset("upload_image/$blog->thumbnail") }}" width="100%" style="border:solid 3px #C1C1C1;border-radius:10px" alt="">
+                            <img src="{{ Storage::url($blog->thumbnail) }}" width="100%" style="border:solid 3px #C1C1C1;border-radius:10px;" alt="">
                             <div class="alert alert-info mt-3" role="alert">
                                 Kosongkan jika tidak akan diganti
                             </div>
@@ -116,11 +120,5 @@
 @endsection
 
 @section('script')
-        <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-            <script>
-                CKEDITOR.replace( 'desc',{
-                    filebrowserUploadUrl: "{{route('class.image', ['_token' => csrf_token() ])}}",
-                    filebrowserUploadMethod: 'form'
-                });
-            </script>
-    @endsection
+    @include('includes.summernote')
+@endsection

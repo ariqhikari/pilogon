@@ -15,7 +15,7 @@ class CreateVerifikasiesTable extends Migration
     {
         Schema::create('verifikasies', function (Blueprint $table) {
             $table->id();
-            $table->integer("cover_course_id");
+            $table->foreignId("cover_course_id");
             $table->integer("status");
             $table->timestamps();
         });

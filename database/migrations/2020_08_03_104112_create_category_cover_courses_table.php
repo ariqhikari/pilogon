@@ -15,8 +15,8 @@ class CreateCategoryCoverCoursesTable extends Migration
     {
         Schema::create('category_cover_course', function (Blueprint $table) {
             $table->id();
-            $table->integer("category_id");
-            $table->integer("cover_course_id");
+            $table->foreignId("category_id");
+            $table->foreignId("cover_course_id");
             $table->timestamps();
         });
     }

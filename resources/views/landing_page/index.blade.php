@@ -1,6 +1,6 @@
 @extends('landing_page.master')
 
-@section("title","Home")
+@section("title","Tempat Belajar Coding Untuk Semua Orang - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo_putih.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px">
@@ -9,6 +9,9 @@
 @section('css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 <style>
+    .sidenav .sidenav-link{
+        color: #818181;
+    }
     #image-mobile-profile, .user-sidebar{
         color: #818181 !important;
     }
@@ -27,7 +30,7 @@
                 <div class="container">
                     <div class="row jsutify-content-center text-center">
                         <div class="col-md-12">
-                            <img src="{{ asset("resource/image/lp2.png") }}" class="img-header" alt="Pilogon" data-aos="fade-up">
+                            <img src="{{ asset("resource/image/lp2.png") }}" class="img-header img-fluid" alt="Pilogon" data-aos="fade-up">
                             <div  data-aos="fade-up" data-aos-delay="150">
                                 <h1 class="name-comp">Pilogon.</h1>
                                 <h1 class="sub-name">Kelas Belajar Coding Untuk Semua Orang</h1>
@@ -184,9 +187,17 @@
                                             <p id="ceramah" style="color: #c9c9c9">
                                                 " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis explicabo tenetur esse sed, dolorum, vel rem, iusto veniam harum quidem quas quasi quod quae. Obcaecati fuga commodi perspiciatis natus voluptas. "
                                             </p>
-                                            <a href="" style="text-decoration: none;color:#43d6cf !important">
-                                                <h6 id="ceramah2">Kunjungi Instagram <i class="fab fa-instagram"></i></h6>
-                                            </a>
+                                            <div class="d-flex">
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-facebook"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-instagram"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-github"></i></h6>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -209,9 +220,17 @@
                                             <p id="ceramah" style="color: #c9c9c9">
                                                 " Itu teh foto si rasel sabardila salah satu murid kebanggaan smkn 4 bandung, katanamah pengen juara lks biar dapet beasiswa di itb, tapi da sok horeaman ngodingna:) jadi langsung kerja tapi da gpp kalo jadi programmer di perusahaan bagusmah apalagi kalo yang punya perusaannya punya anak perempuan bening:V. "
                                             </p>
-                                            <a href="" style="text-decoration: none;color:#43d6cf !important">
-                                                <h6 id="ceramah2">Kunjungi Instagram <i class="fab fa-instagram"></i></h6>
-                                            </a>
+                                            <div class="d-flex">
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-facebook"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-instagram"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-github"></i></h6>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -234,9 +253,17 @@
                                             <p id="ceramah" style="color: #c9c9c9">
                                                 " Nama saya Ariq Hikari Hidayat. Saya adalah siswa SMK 4 Bandung jurusan RPL (Rekayasa Perangkat Lunak). Saat ini saya sedang bergelut di dunia pemrograman khususnya Web Development. Hobi saya, ngulik tentang teknologin, nonton film dan main game. "
                                             </p>
-                                            <a href="" style="text-decoration: none;color:#43d6cf !important">
-                                                <h6 id="ceramah2">Kunjungi Instagram <i class="fab fa-instagram"></i></h6>
-                                            </a>
+                                            <div class="d-flex">
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-facebook"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-instagram"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-github"></i></h6>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -259,9 +286,17 @@
                                             <p id="ceramah" style="color: #c9c9c9">
                                                 " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis explicabo tenetur esse sed, dolorum, vel rem, iusto veniam harum quidem quas quasi quod quae. Obcaecati fuga commodi perspiciatis natus voluptas. "
                                             </p>
-                                            <a href="" style="text-decoration: none;color:#43d6cf !important">
-                                                <h6 id="ceramah2">Kunjungi Instagram <i class="fab fa-instagram"></i></h6>
-                                            </a>
+                                            <div class="d-flex">
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-facebook"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-instagram"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-github"></i></h6>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -284,9 +319,17 @@
                                             <p id="ceramah" style="color: #c9c9c9">
                                                 " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis explicabo tenetur esse sed, dolorum, vel rem, iusto veniam harum quidem quas quasi quod quae. Obcaecati fuga commodi perspiciatis natus voluptas. "
                                             </p>
-                                            <a href="" style="text-decoration: none;color:#43d6cf !important">
-                                                <h6 id="ceramah2">Kunjungi Instagram <i class="fab fa-instagram"></i></h6>
-                                            </a>
+                                            <div class="d-flex">
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-facebook"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-instagram"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-github"></i></h6>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -309,9 +352,17 @@
                                             <p id="ceramah" style="color: #c9c9c9">
                                                 " Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis explicabo tenetur esse sed, dolorum, vel rem, iusto veniam harum quidem quas quasi quod quae. Obcaecati fuga commodi perspiciatis natus voluptas. "
                                             </p>
-                                            <a href="" style="text-decoration: none;color:#43d6cf !important">
-                                                <h6 id="ceramah2">Kunjungi Instagram <i class="fab fa-instagram"></i></h6>
-                                            </a>
+                                            <div class="d-flex">
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-facebook"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-instagram"></i></h6>
+                                                </a>
+                                                <a href="" class="mx-2" style="text-decoration: none;color:#43d6cf !important">
+                                                    <h6 id="ceramah2"><i class="fab fa-github"></i></h6>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -328,6 +379,8 @@
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@2.4.11/dist/js/splide.min.js" integrity="sha256-qWNguy5xdG3YZHjlow1N55CfiX9ws3LiW+x9SuLK1GA=" crossorigin="anonymous"></script>
     <script>
-        new Splide( '#splide' ).mount();
+        new Splide('#splide', {
+            type: 'loop',
+        }).mount();
     </script>
 @endsection

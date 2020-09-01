@@ -1,7 +1,7 @@
 @extends('landing_page.master')
 
 
-@section("title","profile")
+@section("title","$user->name Profile - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo_putih.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px">
@@ -43,15 +43,15 @@
                         <div class="row text-center">
                             <div class="col">
                                 @if ($user->foto != null)
-                                    <img src="{{ Storage::url(Auth::user()->foto) }}" width="150px" height="150px" style="border-radius:50%;margin-top:-100px" alt="">
+                                    <img src="{{ Storage::url($user->foto) }}" width="150px" height="150px" style="border-radius:50%;margin-top:-100px" alt="">
                                 @else
                                     <img src="{{ asset("resource/image/profile-blank.webp") }}" width="150px" height="150px" style="border-radius:50%;margin-top:-100px" alt="">
                                 @endif
                                 <br><br>
-                                <h2 style="text-transform: capitalize;font-weight:300">{{ Auth::user()->name }}</h2>
-                                <p>Bergabung Pada {{ Auth::user()->created_at->format("d M Y") }}</p>
-                                @if (Auth::user()->profiles[0]->asal_sekolah != null)
-                                    <p style="margin-top: -18px"><i class="fas fa-school"></i> {{ Auth::user()->profiles[0]->asal_sekolah }}</p>
+                                <h2 style="text-transform: capitalize;font-weight:300">{{ $user->name }}</h2>
+                                <p>Bergabung Pada {{ $user->created_at->format("d M Y") }}</p>
+                                @if ($user->profiles[0]->asal_sekolah != null)
+                                    <p style="margin-top: -18px"><i class="fas fa-school"></i> {{$user->profiles[0]->asal_sekolah }}</p>
                                 @else
                                     <p>Profile Belum Diupdate</p>
                                 @endif
@@ -74,13 +74,15 @@
             <div class="col-md-3">
                 <div class="card box-profile" id="bp-1">
                     <div class="card-body">
-                        <h5 class="card-title mt-2">Artikel Ku</h5>
+                        <h5 class="card-title mt-2">Artikel</h5>
                         <hr style="width: 45px;border:solid 1px #262C39;border-radius:5px;margin-top:-1px">
                         <img src="{{ asset("resource/image/article.png") }}" width="100%" alt="">
-                        <h4>{{ Auth::user()->posts->count() }}</h4>
-                        <a href="{{ route("user.artikelku") }}">
-                            <button class="btn-profile mb-2">Lihat Semua</button>
-                        </a>
+                        <h4>{{ $user->posts->count() }}</h4>
+                        @if (Auth::user()->id == $user->id)
+                            <a href="{{ route("user.artikelku") }}">
+                                <button class="btn-profile mb-2">Lihat Semua</button>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -90,10 +92,12 @@
                         <h5 class="card-title mt-2">Kelas</h5>
                         <hr style="width: 45px;border:solid 1px #262C39;border-radius:5px;margin-top:-1px">
                         <img src="{{ asset("resource/image/course.png") }}" width="100%" height="143px" alt="">
-                        <h4>{{ Auth::user()->course_registered->count()+Auth::user()->courses->count() }}</h4>
-                        <a href="{{ route("user.pilihan") }}">
-                            <button class="btn-profile mb-2">Lihat Semua</button>
-                        </a>
+                        <h4>{{ $user->course_registered->count()+$user->courses->count() }}</h4>
+                        @if (Auth::user()->id == $user->id)
+                            <a href="{{ route("user.pilihan") }}">
+                                <button class="btn-profile mb-2">Lihat Semua</button>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -104,9 +108,11 @@
                         <hr style="width: 45px;border:solid 1px #262C39;border-radius:5px;margin-top:-1px">
                         <img src="{{ asset("resource/image/forum-user.png") }}" width="67%" alt="">
                         <h4>{{ $user->forums->count() }}</h4>
-                        <a href="{{ route("forum.user") }}">
-                            <button class="btn-profile mb-2">Lihat Semua</button>
-                        </a>
+                        @if (Auth::user()->id == $user->id)
+                            <a href="{{ route("forum.user") }}">
+                                <button class="btn-profile mb-2">Lihat Semua</button>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>

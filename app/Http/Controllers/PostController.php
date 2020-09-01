@@ -43,13 +43,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "title" => "required",
+            "title" => "required|unique:posts,title",
             "category_id" => "required",
             "content" => "required",
             "thumbnail" => "required|mimes:png,jpeg,svg,jpg"
         ]);
 
-        $slug = \Str::slug($request->title."-".\Str::random(5));
+        $slug = \Str::slug($request->title);
 
         $file = $request->file('thumbnail')->store('assets/blog', 'public');
 
@@ -82,7 +82,7 @@ class PostController extends Controller
         }
         
         $link = \URL::current();
-        $recent = Post::latest()->get()->take(3);
+        $recent = Post::where("status", 1)->latest()->get()->take(3);
         return view("public.posts.show",compact("blog","recent","link"));
     }
 
@@ -112,13 +112,13 @@ class PostController extends Controller
     public function update(Request $request, Post $blog)
     {
         $request->validate([
-            "title" => "required",
+            "title" => "required|unique:posts,title",
             "content" => "required",
             "category_id" => "required",
             "thumbnail" => "required|mimes:png,jpeg,svg,jpg"
         ]);
 
-        $slug = \Str::slug($request->title."-".\Str::random(5));
+        $slug = \Str::slug($request->title);
 
         if ($request->thumbnail == null) {
             $blog->update([

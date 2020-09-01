@@ -1,6 +1,10 @@
 @extends('landing_page.master')
 
-@section("title","Edit Cover Kelas")
+@push('addon-meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endpush
+
+@section("title","Edit Cover Kelas - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px">
@@ -119,18 +123,14 @@
 @endsection
 
 @section('script')
+    @include('includes.summernote')
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('.js-example-basic-multiple').select2({
-                    placeholder: "Select a categorys",
-                    allowClear: true
-                });
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                placeholder: "Select a categorys",
+                allowClear: true
             });
-            CKEDITOR.replace( 'desc',{
-                filebrowserUploadUrl: "{{route('class.image', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
-            });
-        </script>
+        });
+    </script>
 @endsection

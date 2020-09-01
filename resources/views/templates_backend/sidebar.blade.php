@@ -11,7 +11,7 @@
     <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
         <li>
-            <a href="{{route("dashboard")}}"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
+            <a href="{{route("admin.dashboard")}}"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
         </li>
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-user"></i> <span>Users</span></a>

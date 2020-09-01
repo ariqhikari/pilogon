@@ -1,6 +1,6 @@
 @extends('landing_page.master')
 
-@section("title","Kelas")
+@section("title","Kelas - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
@@ -77,11 +77,11 @@
                             <div class="card-body">
                                 <form action="{{ route("class.search") }}" method="post">
                                     @csrf
-                                    <div class="form-group d-flex align-items-center">
-                                        <input id="my-input" style="background-color: transparent;" class="form-control" type="text" name="keyword" placeholder="Cari kelas">
-                                        <button type="submit" style="background-color: transparent;border:none">
-                                            <i class="fas fa-search"></i>
-                                        </button>
+                                    <div class="input-group">
+                                        <input type="text" name="keyword" class="form-control" placeholder="Masukkan kata kunci" style="background-color: transparent;border-right:none">
+                                        <div class="input-group-append">
+                                            <button class="btn" style="border: solid 1px #CED4DA;border-left:none" type="submit"><i class="fas fa-search"></i></button>
+                                        </div>
                                     </div>
                                 </form>
                                 <h5 style="margin-top: 20px">Filter Kelas</h5>
@@ -117,7 +117,7 @@
                                     <a href="{{ route("class.show",$item) }}" style="text-decoration: none">
                                         <div class="card box-profile" id="box-course-8" style="max-height: 500px">
                                             <div class="card-body">
-                                                <img src="{{ Storage::url($item->thumbnail) }}" width="100%" style="border-radius:10px" alt="">
+                                                <img src="{{ Storage::url($item->thumbnail) }}" width="100%" height="200px" style="border-radius:10px" alt="">
                                                 <div style="margin-top: 20px">
                                                     <h6 style="float: left;margin-left:30px;color:#555555" class="mx-auto"><i class="fas fa-scroll"></i>{{ $item->modules->count() }} Modules</h6>
                                                     <h6 style="float: right;margin-right:30px;text-transform:capitalize;color:#555555" class="mx-auto"><i class="fas fa-angle-double-up"></i> {{ $item->level }}</h6>
@@ -130,7 +130,7 @@
                                                 
                                                 <center>
                                                     @foreach ($item->categorys as $item2)
-                                                    <span class="badge badge-dark">{{ $item2->name }}</span>
+                                                        <span class="badge badge-dark">{{ $item2->name }}</span>
                                                     @endforeach
                                                 </center>
                                             </div>

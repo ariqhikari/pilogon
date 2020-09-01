@@ -52,9 +52,6 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        if(Auth::user()->slug != $user->slug){
-            return redirect()->back()->with("error","Kamu Tidak Punya Hak Akses");
-        }
         return view("public.user.show",compact('user'));
     }
 
@@ -85,7 +82,7 @@ class UserController extends Controller
             "foto" => "mimes:png,jpg,jpeg,svg"
         ]);
         
-            $slug = $request->name." ".\Str::random(5);
+        $slug = Str::slug($request->name."-".\Str::random(5));
 
         if($request->foto == null && $request->password == null){
             
@@ -162,27 +159,11 @@ class UserController extends Controller
 
             return redirect()->route("user.edit",$user)->with("sukses",'Berhasil Edit Profile');
         } else{
-            $file = $request->file("foto");
-            $name_file = $file->getClientOriginalName();
-            $destination = "upload_image";
-            $format = ["png","jpg","jpeg","svg"];
-
-            $name_file_split = explode(".",$name_file);
-            $name_file_split[0] = uniqid();
-            if (!\in_array($name_file_split[1],$format)) {
-                return redirect()->back()->with("error","Format File Salah");
-            }
-
-            $name_file_upload = "";
-            $name_file_upload .= $name_file_split[0];
-            $name_file_upload .= ".";
-            $name_file_upload .= $name_file_split[1];
-
-            $file->move($destination,$name_file_upload);
+            $file = $request->file('foto')->store('assets/profile', 'public');
 
             $user->update([
                 "name" => $request->name,
-                "foto" => $name_file_upload,
+                "foto" => $file,
                 "password" => bcrypt($request->password),
                 "slug" => \Str::slug($slug)
                 ]);

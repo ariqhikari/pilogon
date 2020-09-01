@@ -17,9 +17,9 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string("title");
             $table->text("materi");
-            $table->integer("user_id");
+            $table->foreignId("user_id");
             $table->string("code")->nullable();
-            $table->integer("cover_course_id");
+            $table->foreignId("cover_course_id");
             $table->timestamps();
         });
     }

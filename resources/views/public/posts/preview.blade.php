@@ -1,9 +1,9 @@
 @extends('landing_page.master')
 
-@section("title","$blog->title")
+@section("title","$blog->title - Pilogon")
 
 @section('logo')
-    <img src="{{ asset("resource/image/logo_putih.png") }}" alt="" width="130px" style="margin-top: 30px;margin-left:30px"
+    <img src="{{ asset("resource/image/logo_putih.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
     >
 @endsection
 
@@ -68,7 +68,7 @@
                     <img src="{{ Storage::url($blog->user->foto) }}" alt="author" class="rounded-circle" width="50px" height="50px">
                 </div>
                 <div class="author-name ml-3">
-                    <p class="m-0"><a href="">{{ $blog->user->name }}</a> in <a href="">{{ $blog->category->name }}</a></p>
+                    <p class="m-0"><a href="{{ route("user.show", $blog->user->slug) }}">{{ $blog->user->name }}</a> in <a href="{{ route("blogs.categoryView", $blog->category->slug) }}">{{ $blog->category->name }}</a></p>
                     <p class="m-0">Sep 9, 2020 • 2 min read</p>
                 </div>
             </div>
@@ -82,34 +82,12 @@
 
     <section id="detail-post" class="detail-post my-5">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-1 text-center">
-                    <div class="share-comment sticky-top py-md-5">
-                        <div class="share-post">
-                            <p>Share</p>
-                            <a href="https://twitter.com/intent/tweet?" class="d-md-block mx-4 mx-md-0 my-4">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="https://www.facebook.com/sharer/sharer.php?" class="d-md-block mx-4 mx-md-0 my-4">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://api.whatsapp.com/send?text=" class="d-md-block mx-4 mx-md-0 my-4">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                        </div>
-                        <hr>
-                        <div class="reply-post d-none d-md-block">
-                            <p>Reply</p>
-                            <a href="#komentar" class="page-scroll">{{ $blog->comments->count() }}</a>
-                            <a href="#komentar" class="d-block my-3 page-scroll">
-                                <i class="far fa-comment"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="row justify-content-lg-center">
                 <div class="col-md-8">
                     <div class="detail-post-thumbnail">
-                        <img src="{{ Storage::url($blog->thumbnail) }}" alt="html" class="img-fluid">
+                        <div class="post-image">
+                            <img src="{{ Storage::url($blog->thumbnail) }}" alt="html" class="img-fluid w-100" style="max-height: 500px">
+                        </div>
                         <div class="breadcrumb-detail-post mt-3">
                             <p><a href="{{ route("user.artikelku") }}" class="font-normal">Artikel Ku</a> &raquo; <b>{{ $blog->title }}</b></p>
                         </div>

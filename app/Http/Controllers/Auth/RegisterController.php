@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "email/verify";
 
     /**
      * Create a new controller instance.
@@ -66,14 +66,13 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $number = rand(1,5);
-        $slug = \Str::slug($data["name"])."-".\Str::random(5);
+        $slug = \Str::slug($data["name"]."-".\Str::random(5));
         
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'foto' => 'assets/profile/avatar-' . $number . '.jpg',
-            'permission' => "murid",
             'slug' => $slug
         ]);
 

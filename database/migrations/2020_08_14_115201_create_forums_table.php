@@ -18,7 +18,7 @@ class CreateForumsTable extends Migration
             $table->string("title");
             $table->string("slug");
             $table->text("problem");
-            $table->integer("user_id");
+            $table->foreignId("user_id");
             $table->timestamps();
         });
     }

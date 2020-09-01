@@ -15,8 +15,8 @@ class CreateCommentForumsTable extends Migration
     {
         Schema::create('comment_forums', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id");
-            $table->integer("forum_id");
+            $table->foreignId("user_id");
+            $table->foreignId("forum_id");
             $table->text("comment");
             $table->integer("parent")->default(0);
             $table->timestamps();

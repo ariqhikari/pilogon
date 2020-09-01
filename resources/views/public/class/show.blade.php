@@ -1,9 +1,9 @@
 @extends('landing_page.master')
 
-@section("title","$covercourse->title")
+@section("title","$covercourse->title - Pilogon")
 
 @section('logo')
-    <img src="{{ asset("resource/image/logo_putih.png") }}" alt="" width="130px" style="margin-top: 30px;margin-left:30px"
+    <img src="{{ asset("resource/image/logo_putih.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px"
     >
 @endsection
 
@@ -42,7 +42,7 @@
 @endsection
 
 @section('content')
-    <div style="width: 100%;height:550px;background-color:#181E2B" id="box-cls-head">
+    <div style="width: 100%;height:550px;background-color:#181E2B;margin-top:-110px;padding-top:120px" id="box-cls-head">
         <div class="container" style="clear: both">
             <div class="row text-center text-white justify-content-center">
                 <div class="col-md-6">
@@ -58,16 +58,16 @@
             </div>
             <br>
             <div class="row text-center justify-content-center">
-                <div class="col-md-8 d-flex justify-content-center flex-row mr-4">
-                    <div class="mr-2">
+                <div class="col-md-8 d-flex justify-content-between flex-row" style="margin-right: 35px">
+                    <div class="mx-2">
                         <h5 style="color: #cfcfcf">Pendaftar</h5>
                         <h3 style="color: #59E0C0 ">{{ $covercourse->userRegistered->count() }}</h3>
                     </div>
-                    <div class="mr-2">
+                    <div class="mx-2">
                         <h5 style="color: #cfcfcf">Level</h5>
                         <h3 style="color: #59E0C0;text-transform:capitalize">{{ $covercourse->level }}</h3>
                     </div>
-                    <div class="mr-2">
+                    <div class="mx-2">
                         <h5 style="color: #cfcfcf" >Modul</h5>
                         <h3 style="color: #59E0C0 ">{{ $covercourse->modules->count() }}</h3>
                     </div>
@@ -75,14 +75,14 @@
             </div>
         </div>
     </div>
-    <div class="container" style="clear: both;">
 
+    <div class="container" style="clear: both;">
         <div class="row justify-content-center" id="box-class-side">
             <div class="col-md-6 col-lg-7">
                 <div class="card" style="border-radius: 8px;background-color:#ffffff">
                     <div class="card-body">
                         <div style="width: 100%;">
-                            <img src="{{ Storage::url($covercourse->thumbnail) }}" style="border-radius:8px" alt="" class="w-100">
+                            <img src="{{ Storage::url($covercourse->thumbnail) }}" style="border-radius:8px;max-height:500px" alt="" class="w-100">
                         </div>
                     </div>
                 </div>
@@ -123,9 +123,11 @@
                         <div class="card" style="box-shadow:0px 0px 2px 1px rgb(223, 223, 223);background-color:#f2f2f2">
                             <div class="card-body">
                                 <div class="col-md-12">
-                                    <img src="{{ asset("upload_image") }}/{{ $covercourse->user->foto }}" alt="" width="80px" height="80px" class="rounded-circle mb-2">
-                                    <h5>{{ $covercourse->user->name }}</h5>
-                                    @if ($covercourse->user->profiles[0]->asal_sekolah != null)
+                                    <a href="{{ route("user.show", $covercourse->user) }}" style="color:#333">
+                                        <img src="{{ Storage::url($covercourse->user->foto) }}" alt="" width="80px" height="80px" class="rounded-circle mb-2">
+                                        <h5>{{ $covercourse->user->name }}</h5>
+                                    </a>
+                                        @if ($covercourse->user->profiles[0]->asal_sekolah != null)
                                         <h6 style="color: grey;margin-top:-7px">{{  $covercourse->user->profiles[0]->asal_sekolah }}</h6>
                                     @endif
                                     <a 

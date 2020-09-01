@@ -1,6 +1,6 @@
 @extends('landing_page.master')
 
-@section("title","Kelas yang dibuat")
+@section("title","Kelas yang dibuat - Pilogon")
 
 @section('logo')
     <img src="{{ asset("resource/image/logo tulisan.png") }}" alt="" width="130px" style="margin-top: -10px;margin-left:30px">
@@ -110,7 +110,7 @@
                                             <td>
                                                 {{ $item->modules->count() }}
                                             </td>
-                                            <td>
+                                            <td class="d-flex">
                                                 <a href="{{ route("created-course.edit",$item->slug) }}" class="text-decoration-none">
                                                     <i class="fas fa-pencil-alt" style="color: #262C39;margin-right:10px"></i>
                                                 </a>
@@ -212,13 +212,18 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <center>
-                                    <a href="{{ route("verifikasi.delete") }}">
-                                        <button class="btn btn-danger btn-sm" type="button"><i class="fas fa-trash"></i> Hapus Riwayat</button>
-                                    </a>
-                                </center>
+                                @if ($verifikasi->count() != 0)
+                                    <center>
+                                        <a href="{{ route("verifikasi.delete") }}">
+                                            <button class="btn btn-danger btn-sm" type="button"><i class="fas fa-trash"></i> Hapus Riwayat</button>
+                                        </a>
+                                    </center>
+                                @else
+                                    <center>
+                                        <p class="btn btn-dark btn-sm" style="background-color: #262C39">History Kosong</p>
+                                    </center>
+                                @endif
                             </div>
-
                         </div>
                     </div>
                 </div>
