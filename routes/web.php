@@ -28,6 +28,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('user')
         ->name('user.')
         ->group(function () {
+            Route::post("/","UserController@store")->name("store");
+            Route::get("/","UserController@index")->name("index");
+            Route::get("create","UserController@create")->name("create");
+            Route::put("{user}","UserController@update")->name("update");
+            Route::delete("{user}","UserController@destroy")->name("destroy");
+            Route::get("{user}/edit","UserController@edit")->name("edit");
             Route::get("artikel-ku","PostController@user")->name("artikelku");
             Route::get("pilihan-kelas","UserController@pilihan")->name("pilihan");
             Route::get("kelas-yang-dipelajari","UserController@learned_course")->name("learned");
@@ -119,7 +125,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::resources([
         'categorys' => 'CategoryController',
-        'user' => 'UserController',
         'created-course' => 'CoverCourseController',
         'verifikasi' => 'VerifikasiController',
         'jawaban-forum' => 'CommentForumController',
@@ -156,3 +161,12 @@ Route::prefix('forum')
         Route::get("search","ForumController@search")->name("search");
         Route::get("{forum}","ForumController@show")->name("show");
 });
+
+Route::prefix('user')
+    ->name('user.')
+    ->group(function () {
+        Route::get("{user}","UserController@show")->name("show");
+});
+
+Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
+Route::get('google/callback', 'Auth\GoogleController@handleGoogleCallback');

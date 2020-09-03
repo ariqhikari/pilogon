@@ -10,7 +10,7 @@
 	</style>
 @endpush
 
-@section('title', 'Registration - Pilogon')
+@section('title', 'Sign Up - Pilogon')
 
 @section('content')
 	<div class="limiter">
@@ -27,7 +27,7 @@
 
 						<div class="col-md-12">
 							<span class="login100-form-title pb-4">
-								User Register
+								Sign Up
 							</span>
 
 							@if ($errors->any())
@@ -66,7 +66,7 @@
 
 							<div class="container-login100-form-btn">
 								<button class="login100-form-btn" type="submit">
-									Register
+									Sign Up
 								</button>
 							</div>
 						</div>

@@ -146,7 +146,11 @@
                             <div class="card-body">
                                 <div class="col-md-12">
                                     <a href="{{ route("user.show", $covercourse->user) }}" style="color:#333">
-                                        <img src="{{ Storage::url($covercourse->user->foto) }}" alt="" width="80px" height="80px" class="rounded-circle mb-2">
+                                        @if ($covercourse->user->google_id)
+                                            <img src="{{ $covercourse->user->foto }}" alt="" width="80px" height="80px" class="rounded-circle mb-2">
+                                        @else
+                                            <img src="{{ Storage::url($covercourse->user->foto) }}" alt="" width="80px" height="80px" class="rounded-circle mb-2">
+                                        @endif
                                         <h5>{{ $covercourse->user->name }}</h5>
                                     </a>
                                         @if ($covercourse->user->profiles[0]->asal_sekolah != null)

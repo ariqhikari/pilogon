@@ -14,25 +14,28 @@
             background-color: #f2f2f2;
         }
 
-        .btn-registrasi{
-            width: 125px;
-            height: 30px;
-            border-radius: 40px;
+         .btn-registrasi{
             border: none;
             background-color: #f2f2f2;
             color: #262C39;
-            font-size: 20px;
+        }
+
+        .btn-registrasi:hover{
+            background-color: #dfdede;
         }
 
         .btn-login{
             background-color: transparent;
-            width: 85px;
-            height: 30px;
-            border-radius: 40px;
             color: #f2f2f2;
-            border: solid 2px #f2f2f2;
-            font-size: 20px;
+            border: 2px solid #f2f2f2;
         }
+
+        .btn-login:hover {
+            background-color: #58dfbf;
+            border-color: #58dfbf;
+            color: #ffffff;
+        }
+    
     
 
         #logo-nav{
@@ -106,7 +109,11 @@
                                         <div class="card-body">
                                             <h4 class="card-title mt-2" style="text-transform: capitalize;color:rgb(56, 56, 56)">{{ substr($item->title,0,20) }}..</h4>
                                             <div>
-                                                <img src="{{ Storage::url($item->user->foto) }}" alt="" width="40px" class="rounded-circle float-left" height="40px" style="margin-right:10px">
+                                                @if ($item->user->google_id)
+                                                    <img src="{{ $item->user->foto }}" alt="" width="40px" class="rounded-circle float-left" height="40px" style="margin-right:10px">
+                                                @else
+                                                    <img src="{{ Storage::url($item->user->foto) }}" alt="" width="40px" class="rounded-circle float-left" height="40px" style="margin-right:10px">
+                                                @endif
                                                 <h6 style="color: rgb(129, 129, 129)">{{ $item->user->name }}</h6>
                                                 <h6 style="color: rgb(129, 129, 129);margin-top:-5px">{{ $item->created_at->diffForHumans() }}</h6>
                                             </div>

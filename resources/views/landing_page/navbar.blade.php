@@ -1,4 +1,4 @@
- {{-- awal navbar --}}
+{{-- awal navbar --}}
         <nav class="nav align-items-center justify-content-between">
             <div style="float: left">
                 <a href="{{ route('LandingPage.index') }}">
@@ -27,7 +27,11 @@
                     @else
                         <div class="d-flex align-items-center mt-3 d-md-none sidenav-link" id="img-mobile-profile" style="cursor: pointer;">
                             <div class="mr-2">
-                                <img  src="{{ Storage::url(Auth::user()->foto) }}" width="35px" height="35px" class="rounded-circle" alt="" style="margin-left: -7px;">
+                                @if (Auth::user()->google_id)
+                                    <img  src="{{ Auth::user()->foto }}" width="35px" height="35px" class="rounded-circle" alt="{{ Auth::user()->name }}" style="margin-left: -7px;">
+                                @else
+                                    <img  src="{{ Storage::url(Auth::user()->foto) }}" width="35px" height="35px" class="rounded-circle" alt="{{ Auth::user()->name }}" style="margin-left: -7px;">
+                                @endif
                             </div>
                             <span style="font-size:18px" class="user-sidebar">
                                 <span>{{ Auth::user()->name }}</span>
@@ -59,7 +63,11 @@
                 @if (Auth::user() == true)
                     <div class="d-none d-md-inline" id="img-profile" style="cursor: pointer">
                         <i class="fas fa-chevron-down" id="logo-down"></i>
-                        <img  src="{{ Storage::url(Auth::user()->foto) }}" width="35px" height="35px" class="rounded-circle" alt="" style="margin-right: 25px;margin-top:-16px;">
+                        @if (Auth::user()->google_id)
+                            <img  src="{{ Auth::user()->foto }}" width="35px" height="35px" class="rounded-circle" alt="{{ Auth::user()->name }}" style="margin-right: 25px;margin-top:-16px;">
+                        @else
+                            <img  src="{{ Storage::url(Auth::user()->foto) }}" width="35px" height="35px" class="rounded-circle" alt="{{ Auth::user()->name }}" style="margin-right: 25px;margin-top:-16px;">
+                        @endif
                     </div>
                     <div class="shadow" style="display:none;width: 150px;height:180px;background-color:#f7f7f7;position:absolute;margin-left:-150px;z-index:100;margin-top:10px;border-radius:10px;text-align:center" id="box-profile">
                         <br>

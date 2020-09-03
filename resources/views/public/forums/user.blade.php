@@ -138,7 +138,11 @@
                                         <div class="card box-profile" style="height: 85px">
                                             <div class="card-body">
                                                 <div>
-                                                    <img src="{{ Storage::url($item2->user->foto) }}" style="float:left;margin-top:-7px;margin-right:20px;border-radius:50%" alt="" width="60px" height="60px">
+                                                    @if ($item2->user->google_id)
+                                                        <img src="{{ $item2->user->foto }}" style="float:left;margin-top:-7px;margin-right:20px;border-radius:50%" alt="" width="60px" height="60px">
+                                                    @else
+                                                        <img src="{{ Storage::url($item2->user->foto) }}" style="float:left;margin-top:-7px;margin-right:20px;border-radius:50%" alt="" width="60px" height="60px">
+                                                    @endif
                                                     <h6>{!! substr($item2->comment,0,40) !!}</h6>
                                                     <h6 style="color:grey;margin-top:-10px;">{{ $item2->created_at->diffForHumans() }}</h6>
                                                 </div>

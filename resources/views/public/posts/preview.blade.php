@@ -65,7 +65,11 @@
             <h1 class="display-4">{{ $blog->title }}</h1>
             <div class="author mt-4 d-flex align-items-center">
                 <div class="author-img">
-                    <img src="{{ Storage::url($blog->user->foto) }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                    @if ($blog->user->google_id)
+                        <img src="{{ $blog->user->foto }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                    @else
+                        <img src="{{ Storage::url($blog->user->foto) }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                    @endif
                 </div>
                 <div class="author-name ml-3">
                     <p class="m-0"><a href="{{ route("user.show", $blog->user->slug) }}">{{ $blog->user->name }}</a> in <a href="{{ route("blogs.categoryView", $blog->category->slug) }}">{{ $blog->category->name }}</a></p>

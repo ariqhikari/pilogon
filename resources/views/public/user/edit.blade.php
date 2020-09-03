@@ -43,10 +43,10 @@
                 @csrf
                 @method("patch")
                 <center>
-                    @if ($user->foto != null)
-                        <img src="{{ Storage::url($user->foto) }}" width="130px" height="130px" class="rounded-circle mb-3" alt="">
+                    @if ($user->google_id)
+                        <img src="{{ $user->foto }}" width="130px" height="130px" class="rounded-circle mb-3" alt="{{ Auth::user()->name }}">
                     @else
-                        <img src="{{ asset("resource/image/profile-blank.webp") }}" width="130px" height="130px" class="rounded-circle mb-3" alt="">
+                        <img src="{{ Storage::url($user->foto) }}" width="130px" height="130px" class="rounded-circle mb-3" alt="{{ Auth::user()->name }}">
                     @endif
                 </center>
                 <div class="alert alert-warning" role="alert">

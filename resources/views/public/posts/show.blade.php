@@ -82,7 +82,11 @@
             <h1 class="display-4">{{ $blog->title }}</h1>
             <div class="author mt-4 d-flex align-items-center">
                 <div class="author-img">
-                    <img src="{{ Storage::url($blog->user->foto) }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                    @if ($blog->user->google_id)
+                        <img src="{{ $blog->user->foto }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                    @else
+                        <img src="{{ Storage::url($blog->user->foto) }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                    @endif
                 </div>
                 <div class="author-name ml-3">
                     <p class="m-0"><a href="{{ route("user.show", $blog->user->slug) }}">{{ $blog->user->name }}</a> in <a href="{{ route("blogs.categoryView", $blog->category->slug) }}">{{ $blog->category->name }}</a></p>
@@ -163,7 +167,11 @@
                                 </a>
                                 <div class="author d-flex mt-4 align-items-center">
                                     <div class="author-img">
-                                        <img src="{{ Storage::url($item->user->foto) }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                                        @if ($item->user->google_id)
+                                            <img src="{{ $item->user->foto }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                                        @else
+                                            <img src="{{ Storage::url($item->user->foto) }}" alt="author" class="rounded-circle" width="50px" height="50px">
+                                        @endif
                                     </div>
                                     <div class="author-name ml-3">
                                         <p class="m-0"><a href="{{ route("user.show", $item->user->slug ) }}">{{ $item->user->name }}</a> in <a href="{{ route("blogs.categoryView",$item->category) }}">{{ $item->category->name }}</a></p>
@@ -191,7 +199,11 @@
                                     <div class="author d-flex justify-content-between mt-2">
                                         <div class="komentar-left  d-flex align-items-center">
                                             <div class="author-img">
-                                                <img src="{{ Storage::url($item->user->foto) }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                @if ($item->user->google_id)
+                                                    <img src="{{ $item->user->foto }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                @else
+                                                    <img src="{{ Storage::url($item->user->foto) }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                @endif
                                             </div>
                                             <div class="author-name ml-3">
                                                 <p class="m-0"  style="color: #333333">{{ $item->user->name }}</p>
@@ -209,7 +221,11 @@
                                         <div class="author d-flex justify-content-between ml-md-3 ml-lg-5 mt-3">
                                             <div class="komentar-left  d-flex align-items-center">
                                                 <div class="author-img">
-                                                    <img src="{{ Storage::url($item2->user->foto) }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                    @if ($item2->user->google_id)
+                                                        <img src="{{ $item2->user->foto }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                    @else
+                                                        <img src="{{ Storage::url($item2->user->foto) }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                    @endif
                                                 </div>
                                                 <div class="author-name ml-3">
                                                     <p class="m-0" style="color: #333333">{{ $item2->user->name }}</p>

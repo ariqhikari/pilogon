@@ -6,9 +6,8 @@
     <title>@yield('title')</title>
 
     <!-- General CSS Files -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset("assets/vendor/bootstrap/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <!-- CSS Libraries -->
 
@@ -39,7 +38,11 @@
             </form>
             <ul class="navbar-nav navbar-right">
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="{{ Storage::url(Auth::user()->foto) }}" class="rounded-circle mr-1" width="50px" height="30px">
+            @if (Auth::user()->google_id)
+                <img alt="image" src="{{ Auth::user()->foto }}" class="rounded-circle mr-1" width="50px" height="30px">
+            @else
+                <img alt="image" src="{{ Storage::url(Auth::user()->foto) }}" class="rounded-circle mr-1" width="50px" height="30px">
+            @endif
             <div class="d-sm-none d-lg-inline-block">Hi,{{Auth::user()->name}}</div></a>
                 <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">Logged in 5 min ago</div>

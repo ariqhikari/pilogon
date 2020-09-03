@@ -18,25 +18,28 @@
         background-color: #f2f2f2;
     }
 
-    .btn-registrasi{
-        width: 125px;
-        height: 30px;
-        border-radius: 40px;
-        border: none;
-        background-color: #f2f2f2;
-        color: #262C39;
-        font-size: 20px;
-    }
+      .btn-registrasi{
+            border: none;
+            background-color: #f2f2f2;
+            color: #262C39;
+        }
 
-    .btn-login{
-        background-color: transparent;
-        width: 85px;
-        height: 30px;
-        border-radius: 40px;
-        color: #f2f2f2;
-        border: solid 2px #f2f2f2;
-        font-size: 20px;
-    }
+        .btn-registrasi:hover{
+            background-color: #dfdede;
+        }
+
+        .btn-login{
+            background-color: transparent;
+            color: #f2f2f2;
+            border: 2px solid #f2f2f2;
+        }
+
+        .btn-login:hover {
+            background-color: #58dfbf;
+            border-color: #58dfbf;
+            color: #ffffff;
+        }
+    
 
 
     #logo-nav{
@@ -97,7 +100,11 @@
             <div class="col-lg-8">
                 <div class="row align-items-center">
                     <div class="col-md-2 col-lg-1 text-center">
-                        <img src="{{ Storage::url($forum->user->foto) }}" alt="" width="60px" height="60px" class="rounded-circle">
+                        @if ($forum->user->google_id)
+                            <img src="{{ $forum->user->foto }}" alt="" width="60px" height="60px" class="rounded-circle">
+                        @else
+                            <img src="{{ Storage::url($forum->user->foto) }}" alt="" width="60px" height="60px" class="rounded-circle">
+                        @endif
                     </div>
                     <div class="col-md-5 text-left">
                         <h4 id="profile-penanya-1">{{ $forum->user->name }}</h4>
@@ -179,7 +186,11 @@
                                                     <div class="author d-flex justify-content-between mt-2">
                                                         <div class="komentar-left  d-flex align-items-center">
                                                             <div class="author-img">
-                                                                <img src="{{ Storage::url($item->user->foto) }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                                @if ($item->ser->google_id)
+                                                                    <img src="{{ $item->user->foto }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                                @else
+                                                                    <img src="{{ Storage::url($item->user->foto) }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                                @endif
                                                             </div>
                                                             <div class="author-name ml-3">
                                                                 <p class="m-0"  style="color: #333333">{{ $item->user->name }}</p>
@@ -197,7 +208,11 @@
                                                         <div class="author d-flex justify-content-between ml-md-3 ml-lg-5 mt-3">
                                                             <div class="komentar-left  d-flex align-items-center">
                                                                 <div class="author-img">
-                                                                    <img src="{{ Storage::url($item2->user->foto) }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                                    @if ($item2->user->google_id)
+                                                                        <img src="{{ $item2->user->foto }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                                    @else
+                                                                        <img src="{{ Storage::url($item2->user->foto) }}" alt="komentar" class="rounded-circle" width="50px" height="50px">
+                                                                    @endif
                                                                 </div>
                                                                 <div class="author-name ml-3">
                                                                     <p class="m-0" style="color: #333333">{{ $item2->user->name }}</p>

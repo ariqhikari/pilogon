@@ -109,7 +109,11 @@
                                 </h6>
                                 <div class="author d-flex mt-4 align-items-center">
                                     <div class="author-img">
-                                        <img src="{{ Storage::url($item->user->foto) }}" alt="author" width="50px" height="50px" class="rounded-circle">
+                                        @if ($item->user->google_id)
+                                            <img src="{{ $item->user->foto }}" alt="author" width="50px" height="50px" class="rounded-circle">
+                                        @else
+                                            <img src="{{ Storage::url($item->user->foto) }}" alt="author" width="50px" height="50px" class="rounded-circle">
+                                        @endif
                                     </div>
                                     <div class="author-name ml-3">
                                         <p class="m-0"><a href="{{ route("user.show", $item->user->slug ) }}">{{ $item->user->name }}</a> in <a

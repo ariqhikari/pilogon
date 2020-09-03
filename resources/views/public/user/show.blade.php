@@ -13,6 +13,27 @@
             background-color: #f2f2f2
         }
 
+        .btn-registrasi{
+            border: none;
+            background-color: #f2f2f2;
+            color: #262C39;
+        }
+
+        .btn-registrasi:hover{
+            background-color: #dfdede;
+        }
+
+        .btn-login{
+            background-color: transparent;
+            color: #f2f2f2;
+            border: 2px solid #f2f2f2;
+        }
+
+        .btn-login:hover {
+            background-color: #58dfbf;
+            border-color: #58dfbf;
+            color: #ffffff;
+        }
         #logo-nav{
             color:white
         }
@@ -42,10 +63,10 @@
                     <div class="card-body">
                         <div class="row text-center">
                             <div class="col">
-                                @if ($user->foto != null)
-                                    <img src="{{ Storage::url($user->foto) }}" width="150px" height="150px" style="border-radius:50%;margin-top:-100px" alt="">
+                                @if ($user->google_id)
+                                    <img src="{{ $user->foto }}" width="150px" height="150px" style="border-radius:50%;margin-top:-100px" alt="{{ $user->name }}">
                                 @else
-                                    <img src="{{ asset("resource/image/profile-blank.webp") }}" width="150px" height="150px" style="border-radius:50%;margin-top:-100px" alt="">
+                                    <img src="{{ Storage::url($user->foto) }}" width="150px" height="150px" style="border-radius:50%;margin-top:-100px" alt="{{ $user->name }}">
                                 @endif
                                 <br><br>
                                 <h2 style="text-transform: capitalize;font-weight:300">{{ $user->name }}</h2>
@@ -78,11 +99,13 @@
                         <hr style="width: 45px;border:solid 1px #262C39;border-radius:5px;margin-top:-1px">
                         <img src="{{ asset("resource/image/article.png") }}" width="100%" alt="">
                         <h4>{{ $user->posts->count() }}</h4>
-                        @if (Auth::user()->id == $user->id)
-                            <a href="{{ route("user.artikelku") }}">
-                                <button class="btn-profile mb-2">Lihat Semua</button>
-                            </a>
-                        @endif
+                        @auth
+                            @if (Auth::user()->id == $user->id)
+                                <a href="{{ route("user.artikelku") }}">
+                                    <button class="btn-profile mb-2">Lihat Semua</button>
+                                </a>
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -93,11 +116,13 @@
                         <hr style="width: 45px;border:solid 1px #262C39;border-radius:5px;margin-top:-1px">
                         <img src="{{ asset("resource/image/course.png") }}" width="100%" height="143px" alt="">
                         <h4>{{ $user->course_registered->count()+$user->courses->count() }}</h4>
-                        @if (Auth::user()->id == $user->id)
-                            <a href="{{ route("user.pilihan") }}">
-                                <button class="btn-profile mb-2">Lihat Semua</button>
-                            </a>
-                        @endif
+                        @auth
+                            @if (Auth::user()->id == $user->id)
+                                <a href="{{ route("user.pilihan") }}">
+                                    <button class="btn-profile mb-2">Lihat Semua</button>
+                                </a>
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>
@@ -108,11 +133,13 @@
                         <hr style="width: 45px;border:solid 1px #262C39;border-radius:5px;margin-top:-1px">
                         <img src="{{ asset("resource/image/forum-user.png") }}" width="67%" alt="">
                         <h4>{{ $user->forums->count() }}</h4>
-                        @if (Auth::user()->id == $user->id)
-                            <a href="{{ route("forum.user") }}">
-                                <button class="btn-profile mb-2">Lihat Semua</button>
-                            </a>
-                        @endif
+                        @auth
+                            @if (Auth::user()->id == $user->id)
+                                <a href="{{ route("forum.user") }}">
+                                    <button class="btn-profile mb-2">Lihat Semua</button>
+                                </a>
+                            @endif
+                        @endauth
                     </div>
                 </div>
             </div>
