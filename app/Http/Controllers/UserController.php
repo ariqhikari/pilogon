@@ -78,7 +78,9 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user){
         $request->validate([
-            "name" => "required",
+            "name" => "required|max:50",
+            "telepon" => "numeric",
+            
             "foto" => "mimes:png,jpg,jpeg,svg"
         ]);
         

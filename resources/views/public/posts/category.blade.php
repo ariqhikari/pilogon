@@ -10,53 +10,54 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset("blog/style.css") }}">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <style>
-        body{
-            background-color: #f2f2f2;
-        }
+<style>
+    body{
+        background-color: #f2f2f2;
+    }
 
-        .btn-registrasi{
-            width: 125px;
-            height: 30px;
-            border-radius: 40px;
-            border: none;
-            background-color: #f2f2f2;
-            color: #262C39;
-            font-size: 20px;
-        }
+    .btn-registrasi{
+        border: none;
+        background-color: #f2f2f2;
+        color: #262C39;
+    }
 
-        .btn-login{
-            background-color: transparent;
-            width: 85px;
-            height: 30px;
-            border-radius: 40px;
-            color: #f2f2f2;
-            border: solid 2px #f2f2f2;
-            font-size: 20px;
-        }
-    
+    .btn-registrasi:hover{
+        background-color: #dfdede;
+    }
 
-        #logo-nav{
-            color: white
-        }
+    .btn-login{
+        background-color: transparent;
+        color: #f2f2f2;
+        border: 2px solid #f2f2f2;
+    }
 
-        ::-webkit-scrollbar-thumb {
-            background-color: #262C39;
-        }
+    .btn-login:hover {
+        background-color: #58dfbf;
+        border-color: #58dfbf;
+        color: #ffffff;
+    }
 
-        #logo-down{
-            color: white
-        }
+    #logo-nav{
+        color: white
+    }
 
-        .sidenav{
-            background-color: #262C39;
-            z-index:99
-        }
+    ::-webkit-scrollbar-thumb {
+        background-color: #262C39;
+    }
 
-        .sidenav a{
-            color: #f7f7f7
-        }
-    </style>
+    #logo-down{
+        color: white
+    }
+
+    .sidenav{
+        background-color: #262C39;
+        z-index:99
+    }
+
+    .sidenav a{
+        color: #f7f7f7
+    }
+</style>
 @endsection
 
 @section('content')

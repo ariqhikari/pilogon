@@ -116,8 +116,8 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
-                            </div>
-                            <div class="col-md-8">
+                                    </div>
+                                    <div class="col-md-8">
                                     <div class="form-group">
                                         <label for="title">Judul : </label>
                                         <input id="title" class="form-control @error('title') is-invalid @enderror" type="text" name="title" style="background-color: transparent" value="{{ old('title') }}">
@@ -170,14 +170,14 @@
 @endsection
 
 @section('script')
-    @include('includes.summernote')
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2({
-                placeholder: "Pilih Kategori",
-                allowClear: true
-            });
+@include('includes.summernote')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.js-example-basic-multiple').select2({
+            placeholder: "Pilih Kategori",
+            allowClear: true
         });
-    </script>
+    });
+</script>
 @endsection

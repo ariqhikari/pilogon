@@ -73,12 +73,22 @@ class PostController extends Controller
      */
     public function show(Post $blog)
     {
-        $views = View::where("post_id",$blog->id)->where("user_id",Auth::id())->get();
-        if ($views->count() == 0) {
-            View::create([
-                "user_id" => Auth::id(),
-                "post_id" => $blog->id
-            ]);
+        if(Auth::user()){
+            $views = View::where("post_id",$blog->id)->where("user_id",Auth::id())->get();
+            if ($views->count() == 0) {
+                View::create([
+                    "user_id" => Auth::id(),
+                    "post_id" => $blog->id
+                ]);
+            }
+        } else{
+            $views = View::where("post_id",$blog->id)->where("user_id",1)->get();
+            if ($views->count() == 0) {
+                View::create([
+                    "user_id" => 1,
+                    "post_id" => $blog->id
+                ]);
+            }
         }
         
         $link = \URL::current();

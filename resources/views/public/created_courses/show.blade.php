@@ -98,7 +98,7 @@
                 <p style="color: #5f5f5f">Dibawah ini adalah kumpulan module atau materi dari kelas {{ $covercourse->title }}.</p>
             </div>
         </div>
-        <div class="row text-center justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-md-6 mt-4">
                 <div class="card box-profile">
                     <div class="card-body">
@@ -157,7 +157,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="materi" class="@error("materi") is-invalid @enderror" id="materi" cols="30" rows="10">
+                                    <textarea name="materi" class="@error("materi") is-invalid @enderror" id="desc" cols="30" rows="10">
                                         isi materi disini
                                     </textarea>
                                     @error('materi')
@@ -189,7 +189,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="materi" class="@error("materi") is-invalid @enderror" id="materi" cols="30" rows="10">
+                                    <textarea name="materi" class="@error("materi") is-invalid @enderror" id="desc" cols="30" rows="10">
                                         {{ $course_update->materi }}
                                     </textarea>
                                     @error('materi')
@@ -218,28 +218,23 @@
 @endsection
 
 @section('script')
-    <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-        <script>
-            CKEDITOR.replace( 'materi',{
-                filebrowserUploadUrl: "{{route('class.image', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
+    @include('includes.summernote')
+    <script>
+        function confirmDelete(id) {
+        swal({
+            title: "Kamu Yakin?",
+            text: "Module Ini akan di hapus",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+            })
+            .then((willDelete) => {
+            if (willDelete) {
+                window.location.href = "/modules/"+ id +"/delete"
+            } else {
+                swal("Data Kamu Aman");
+            }
             });
-
-            function confirmDelete(id) {
-            swal({
-                title: "Kamu Yakin?",
-                text: "Module Ini akan di hapus",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                })
-                .then((willDelete) => {
-                if (willDelete) {
-                    window.location.href = "/modules/"+ id +"/delete"
-                } else {
-                    swal("Data Kamu Aman");
-                }
-                });
-        }
-        </script>
+    }
+    </script>
 @endsection

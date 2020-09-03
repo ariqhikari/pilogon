@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Auth;
 use App\CoverCourse;
+use App\Jobs\QueuedVerifyEmailJob;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -38,6 +39,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+
+    public function sendEmailVerificationNotification()
+    {
+        //dispactches the job to the queue passing it this User object
+        QueuedVerifyEmailJob::dispatch($this);
+    }
 
     public function getRouteKeyName(){
         return "slug";

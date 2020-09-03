@@ -16,25 +16,26 @@
         }
 
         .btn-registrasi{
-            width: 125px;
-            height: 30px;
-            border-radius: 40px;
             border: none;
             background-color: #f2f2f2;
             color: #262C39;
-            font-size: 20px;
+        }
+
+        .btn-registrasi:hover{
+            background-color: #dfdede;
         }
 
         .btn-login{
             background-color: transparent;
-            width: 85px;
-            height: 30px;
-            border-radius: 40px;
             color: #f2f2f2;
-            border: solid 2px #f2f2f2;
-            font-size: 20px;
+            border: 2px solid #f2f2f2;
         }
-    
+
+        .btn-login:hover {
+            background-color: #58dfbf;
+            border-color: #58dfbf;
+            color: #ffffff;
+        }
 
         #logo-nav{
             color: white

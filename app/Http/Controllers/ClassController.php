@@ -32,18 +32,12 @@ class ClassController extends Controller
             "level" => "required"
         ]);
 
-        $slug = Str::slug($request->title);
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
+        $data['user_id'] = Auth::id();
+        $data['thumbnail'] = $request->file('thumbnail')->store('assets/course', 'public');
 
-        $file = $request->file('thumbnail')->store('assets/course', 'public');
-
-        $cover = CoverCourse::create([
-            "title" => $request->title,
-            "slug" => $slug,
-            "description" => $request->description,
-            "user_id" => Auth::id(),
-            "level" => $request->level,
-            "thumbnail" => $file
-        ]);
+        $cover = CoverCourse::create($data);
 
         $cover->categorys()->attach($request->category_id);
 
@@ -76,8 +70,10 @@ class ClassController extends Controller
     public function show(CoverCourse $slug){
         $covercourse = $slug;
         $data_course = [];
-        foreach (Auth::user()->course_registered as $key => $value) {
-            $data_course[] = $value->id;
+        if(Auth::user()){
+            foreach (Auth::user()->course_registered as $key => $value) {
+                $data_course[] = $value->id;
+            }
         }
 
         return view("public.class.show",compact("covercourse","data_course"));

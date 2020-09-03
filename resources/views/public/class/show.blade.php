@@ -13,6 +13,28 @@
             background-color: #f2f2f2;
         }
 
+        .btn-registrasi{
+            border: none;
+            background-color: #f2f2f2;
+            color: #262C39;
+        }
+
+        .btn-registrasi:hover{
+            background-color: #dfdede;
+        }
+
+        .btn-login{
+            background-color: transparent;
+            color: #f2f2f2;
+            border: 2px solid #f2f2f2;
+        }
+
+        .btn-login:hover {
+            background-color: #58dfbf;
+            border-color: #58dfbf;
+            color: #ffffff;
+        }
+
         #logo-nav{
             color: white
         }
@@ -168,30 +190,39 @@
                         <div class="card" style="width: 100%;box-shadow:0px 0px 2px 1px rgb(223, 223, 223);background-color:#f2f2f2">
                             <div class="card-body">
                                 <div class="col-md">
-                                    @if (Auth::user()->course_registered->count() > 0)
-                                        @if (in_array($covercourse->id,$data_course))
-                                            @foreach (Auth::user()->course_registered as $item)
-                                                @if ($item->id == $covercourse->id)
-                                                    <div class="alert alert-info" role="alert">
-                                                        Kamu Sudah terdaftar dikelas ini
-                                                    </div>
-                                                    @if ($item->pivot->index != null)
-                                                        @foreach (Auth::user()->course_registered as $item)
-                                                                @if ($item->id == $covercourse->id)
-                                                                    <a href="{{ route("class.belajar",[$covercourse,$covercourse->modules[$item->pivot->index]->id]) }}">
-                                                                        <button class="btn btn-dark btn-block" style="background: #181E2B" type="button">Lanjut Belajar</button>
-                                                                    </a>
-                                                                @endif
-                                                        @endforeach
-                                                @else
-                                                    <a href="{{ route("class.belajar",[$covercourse,$covercourse->modules[0]->id]) }}">
-                                                        <button class="btn btn-dark btn-block" style="background: #181E2B" type="button">Mulai Belajar</button>
-                                                    </a>
+                                    @auth
+                                        @if (Auth::user()->course_registered->count() > 0)
+                                            @if (in_array($covercourse->id,$data_course))
+                                                @foreach (Auth::user()->course_registered as $item)
+                                                    @if ($item->id == $covercourse->id)
+                                                        <div class="alert alert-info" role="alert">
+                                                            Kamu Sudah terdaftar dikelas ini
+                                                        </div>
+                                                        @if ($item->pivot->index != null)
+                                                            @foreach (Auth::user()->course_registered as $item)
+                                                                    @if ($item->id == $covercourse->id)
+                                                                        <a href="{{ route("class.belajar",[$covercourse,$covercourse->modules[$item->pivot->index]->id]) }}">
+                                                                            <button class="btn btn-dark btn-block" style="background: #181E2B" type="button">Lanjut Belajar</button>
+                                                                        </a>
+                                                                    @endif
+                                                            @endforeach
+                                                    @else
+                                                        <a href="{{ route("class.belajar",[$covercourse,$covercourse->modules[0]->id]) }}">
+                                                            <button class="btn btn-dark btn-block" style="background: #181E2B" type="button">Mulai Belajar</button>
+                                                        </a>
+                                                        @endif
                                                     @endif
-                                                @endif
-                                            @endforeach
-                                        @endif
-                                        @if (!in_array($covercourse->id,$data_course))
+                                                @endforeach
+                                            @endif
+                                            @if (!in_array($covercourse->id,$data_course))
+                                                <div class="alert alert-info" role="alert">
+                                                    Kamu belum terdaftar dikelas ini
+                                                </div>
+                                                <a href="{{ route("class.daftar",$covercourse->slug) }}">
+                                                    <button class="btn btn-dark btn-block" style="background: #181E2B" type="button">Daftar Kelas</button>
+                                                </a>
+                                            @endif
+                                        @else
                                             <div class="alert alert-info" role="alert">
                                                 Kamu belum terdaftar dikelas ini
                                             </div>
@@ -199,14 +230,15 @@
                                                 <button class="btn btn-dark btn-block" style="background: #181E2B" type="button">Daftar Kelas</button>
                                             </a>
                                         @endif
-                                    @else
+                                    @endauth
+                                    @guest
                                         <div class="alert alert-info" role="alert">
-                                            Kamu belum terdaftar dikelas ini
+                                            Harap login terlebih dahulu untuk mendaftar di kelas ini
                                         </div>
-                                        <a href="{{ route("class.daftar",$covercourse->slug) }}">
-                                            <button class="btn btn-dark btn-block" style="background: #181E2B" type="button">Daftar Kelas</button>
+                                        <a href="{{ route("login") }}">
+                                            <button class="btn btn-dark btn-block" style="background: #181E2B" type="button">Login</button>
                                         </a>
-                                    @endif
+                                    @endguest
                                 </div>
                             </div>
                         </div>

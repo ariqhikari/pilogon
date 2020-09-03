@@ -20,8 +20,10 @@ class ForumController extends Controller
     {
         $forums = Forum::latest()->paginate(18);
         $likes_me = [];
-        foreach (Auth::user()->like_forums as $key => $value) {
-            $likes_me[] = $value->forum_id;
+        if(Auth::user()){
+            foreach (Auth::user()->like_forums as $key => $value) {
+                $likes_me[] = $value->forum_id;
+            }
         }
         return view("public.forums.index",compact("forums","likes_me"));
     }
@@ -73,8 +75,10 @@ class ForumController extends Controller
     public function show(Forum $forum)
     {
         $likes_me = [];
-        foreach (Auth::user()->like_forums as $key => $value) {
-            $likes_me[] = $value->forum_id;
+        if(Auth::user()){
+            foreach (Auth::user()->like_forums as $key => $value) {
+                $likes_me[] = $value->forum_id;
+            }
         }
         $recent = Forum::latest()->get()->take(16);
         $link = \URL::current();

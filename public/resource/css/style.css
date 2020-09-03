@@ -7,6 +7,14 @@ img {
     object-fit: cover;
 }
 
+a {
+    color: #212529;
+}
+
+a:hover {
+    color: #212529;
+}
+
 ::-webkit-scrollbar {
     width: 5px;
 }

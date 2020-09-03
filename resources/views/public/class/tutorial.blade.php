@@ -37,6 +37,9 @@
             height: 500px;
             width: 100%;
         }
+        .modul a.active{
+            color: #59e0c0;
+        }
     </style>
 @endsection
 
@@ -55,7 +58,6 @@
         <div class="row">
             <div class="container">
                 <div class="col-md-12" style="width:100%;border-radius:15px;height:280px;background-position:center;background-size:cover;background-repeat:no-repeat;background-image: url('{{ Storage::url($covercourse->thumbnail) }}')">
-
                 </div>
             </div>
         </div>
@@ -66,9 +68,9 @@
                     <div class="card-body">
                         <h4 style="margin-left: 7px">Daftar Modul</h4>
                         <hr>
-                        <div class="scroll">
+                        <div class="scroll modul">
                             @foreach ($daftar_module as $item)
-                                <a href="{{ route("class.belajar",[$covercourse->slug,$item->id]) }}">
+                                <a href="{{ route("class.belajar",[$covercourse->slug,$item->id]) }}" class="{{ ($item->id == $module->id) ? 'active' : ''  }}">
                                     <h5>{{ $item->title }}</h5>
                                 </a>
                                 <hr>

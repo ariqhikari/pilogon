@@ -19,9 +19,9 @@ class CreateCoverCoursesTable extends Migration
             $table->string("slug");
             $table->text("description");
             $table->string("thumbnail",500);
-            $table->integer("status")->default(0);
             $table->foreignId("user_id");
             $table->string("level");
+            $table->integer("status")->default(0);
             $table->timestamps();
         });
     }

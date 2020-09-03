@@ -2,16 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/','LandingPageController@index')->name("LandingPage.index");
-
-Route::prefix('class')
-        ->name('class.')
-        ->group(function () {
-            Route::post("filter","ClassController@filter")->name("filter");
-            Route::get("/","ClassController@index")->name("index");
-            Route::post("search-course","ClassController@search_cover")->name("search");
-});
-
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('admin')
         ->name('admin.')
@@ -50,7 +40,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
             Route::post("store-cover","ClassController@store_cover")->name("store_cover");
             Route::post("image-upload","ClassController@image")->name("upload.image");
             Route::post("delete-upload","ClassController@deleteImage")->name("delete.image");
-            Route::get("{slug}","ClassController@show")->name("show");
             Route::get("{slug}/daftar","ClassController@daftar")->name("daftar");
             Route::get("{slug}/{id}/belajar","ClassController@belajar")->name("belajar");
     });
@@ -90,6 +79,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('forum')
         ->name('forum.')
         ->group(function () {
+            Route::post("/","ForumController@store")->name("store");
+            Route::get("create","ForumController@create")->name("create");
+            Route::put("{forum}","ForumController@update")->name("update");
+            Route::delete("{forum}","ForumController@destroy")->name("destroy");
+            Route::get("{forum}/edit","ForumController@edit")->name("edit");
             Route::get("user","ForumController@user")->name("user");
             Route::get("{forum}/delete","ForumController@delete")->name("delete");
             Route::post("search","ForumController@search")->name("search");
@@ -105,12 +99,15 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::prefix('blogs')
         ->name('blogs.')
         ->group(function () {
+            Route::post("/","PostController@store")->name("store");
+            Route::get("create","PostController@create")->name("create");
+            Route::delete("{blog}","PostController@destroy")->name("destroy");
+            Route::put("{blog}","PostController@update")->name("update");
+            Route::get("{blog}/edit","PostController@edit")->name("edit");
             Route::get("{blog}/draft","PostController@draft")->name("draft");
             Route::get("{blog}/upload","PostController@upload")->name("upload");
             Route::get("{blog}/preview","PostController@preview")->name("preview");
             Route::get("{id}/hapus-blog","PostController@delete")->name("delete");
-            Route::get("category/{category}","PostController@viewCategory")->name("categoryView");
-            Route::get("viewmore","PostController@viewMore")->name("view");
             Route::get("{blog}/balas/{id}","PostCommentController@balas")->name('balas');
     });
 
@@ -125,11 +122,37 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         'user' => 'UserController',
         'created-course' => 'CoverCourseController',
         'verifikasi' => 'VerifikasiController',
-        'forum' => 'ForumController',
         'jawaban-forum' => 'CommentForumController',
-        'blogs' => 'PostController',
         'post-comment' => 'PostCommentController',
     ]);
 });
 
 Auth::routes(['verify' => true]);
+
+Route::get('/','LandingPageController@index')->name("LandingPage.index");
+
+Route::prefix('class')
+        ->name('class.')
+        ->group(function () {
+            Route::post("filter","ClassController@filter")->name("filter");
+            Route::get("/","ClassController@index")->name("index");
+            Route::get("{slug}","ClassController@show")->name("show");
+            Route::post("search-course","ClassController@search_cover")->name("search");
+});
+
+Route::prefix('blogs')
+    ->name('blogs.')
+    ->group(function () {
+        Route::get("/","PostController@index")->name("index");
+        Route::get("viewmore","PostController@viewMore")->name("view");
+        Route::get("{blog}","PostController@show")->name("show");
+        Route::get("category/{category}","PostController@viewCategory")->name("categoryView");
+});
+
+Route::prefix('forum')
+    ->name('forum.')
+    ->group(function () {
+        Route::get("/","ForumController@index")->name("index");
+        Route::get("search","ForumController@search")->name("search");
+        Route::get("{forum}","ForumController@show")->name("show");
+});

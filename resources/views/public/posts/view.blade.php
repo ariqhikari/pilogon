@@ -16,25 +16,26 @@
         }
 
         .btn-registrasi{
-            width: 125px;
-            height: 30px;
-            border-radius: 40px;
             border: none;
             background-color: #f2f2f2;
             color: #262C39;
-            font-size: 20px;
+        }
+
+        .btn-registrasi:hover{
+            background-color: #dfdede;
         }
 
         .btn-login{
             background-color: transparent;
-            width: 85px;
-            height: 30px;
-            border-radius: 40px;
             color: #f2f2f2;
-            border: solid 2px #f2f2f2;
-            font-size: 20px;
+            border: 2px solid #f2f2f2;
         }
-    
+
+        .btn-login:hover {
+            background-color: #58dfbf;
+            border-color: #58dfbf;
+            color: #ffffff;
+        }
 
         #logo-nav{
             color: white
@@ -77,7 +78,7 @@
 
     <div id="post" class="container post">
         <div class="row mt-4">
-            @foreach ($posts as $item)
+            @forelse ($posts as $item)
             <div class="col-md-6 col-lg-4 my-3" data-aos="fade-up" data-aos-delay="{{ 3 + $loop->iteration }}00">
                 <div class="card box-profile">
                     <a href="{{ route("blogs.show",$item) }}" class="text-decoration-none">
@@ -107,7 +108,11 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty
+                <div class="col-md-12 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <img src="{{ asset("resource/image/null.png") }}" width="250px" alt="">
+                </div>
+            @endforelse
         </div>
         <div class="row justify-content-center text-center mt-3" data-aos-delay="300">
             <div class="col-md-3">
